@@ -101,15 +101,14 @@ dnsConfig: {}
   #   - name: ndots
   #     value: "2"
 
-# DISABLED FOR TRAEFIK USE
 # Service settings
-# service:
-#   # Service type (ClusterIP, NodePort, LoadBalancer, or ExternalName)
-#   type: ClusterIP
-#   # Service port
-#   port: 80
-#   # Annotations to add to the service
-#   annotations: {}
+service:
+  # Service type (ClusterIP, NodePort, LoadBalancer, or ExternalName)
+  type: ClusterIP
+  # Service port
+  port: 80
+  # Annotations to add to the service
+  annotations: {}
 
 # Ingress settings
 ingress:
