@@ -117,7 +117,7 @@ ingress:
   enabled: false
   # Enable external ingress (cannot be true when ingress.enabled is true)
   external: true
-  className: ""
+  className: "homeassistant-ingress"
   labels: {}
   annotations:
     {}
