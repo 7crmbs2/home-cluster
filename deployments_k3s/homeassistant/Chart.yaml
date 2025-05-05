@@ -12,4 +12,4 @@ maintainers:
 dependencies:
   - name: home-assistant
     version: 0.2.119
-    repository: https://github.com/pajikos/home-assistant-helm-chart
+    repository: http://pajikos.github.io/home-assistant-helm-chart/
