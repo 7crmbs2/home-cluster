@@ -11,5 +11,5 @@ maintainers:
     email: julian@diluz.io
 dependencies:
   - name: home-assistant
-    version: 2025.2.4
+    version: 0.2.119
     repository: http://pajikos.github.io/home-assistant-helm-chart/
