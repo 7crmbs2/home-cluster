@@ -114,9 +114,9 @@ dnsConfig: {}
 # Ingress settings
 ingress:
   # Enable ingress for home assistant
-  enabled: true
+  enabled: false
   # Enable external ingress (cannot be true when ingress.enabled is true)
-  external: false
+  external: true
   className: ""
   labels: {}
   annotations:
