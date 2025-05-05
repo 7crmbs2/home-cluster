@@ -116,7 +116,7 @@ home-assistant:
     enabled: true
     # Enable external ingress (cannot be true when ingress.enabled is true)
     external: false
-    className: "homeassistant-ingress"
+    className: "traefik"
     labels: {}
     annotations:
       kubernetes.io/ingress.class: traefik
