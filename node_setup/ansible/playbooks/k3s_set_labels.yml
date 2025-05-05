@@ -1,0 +1,16 @@
+---
+- hosts:              main
+  remote_user:        ubuntu
+  become: true
+  tasks:
+  # TODO here I could run across all mains and worker nodes as hosts and then set the corresponding label for each
+  - name:             label all nodes as worker nodes
+    shell:            "kubectl label nodes cube01 kubernetes.io/role=worker && kubectl label nodes cube03 kubernetes.io/role=worker && kubectl label nodes cube01 node-type=worker && kubectl label nodes cube03 node-type=worker"
+    register: labeling
+
+  - name:             check labeling
+    shell:            "kubectl get nodes --show-labels"
+    register: get_labeling
+    
+  - debug:
+      msg:            "labeling procedure: {{ labeling }}, labeling result: {{ get_labeling }}"

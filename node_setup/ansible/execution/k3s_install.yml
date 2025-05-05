@@ -1,0 +1,4 @@
+---
+- import_playbook: ../playbooks/k3s_install_main.yml
+- import_playbook: ../playbooks/k3s_install_worker.yml
+- import_playbook: ../playbooks/k3s_set_labels.yml

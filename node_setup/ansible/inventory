@@ -1,0 +1,17 @@
+# TODO add vars files
+[no-network]
+192.168.178.68 node_ip=192.168.178.201
+192.168.178.65 node_ip=192.168.178.203
+[uninstalled]
+192.168.178.201 hostname=cube01
+#192.168.178.202 hostname=cube02
+192.168.178.203 hostname=cube03
+[nodes]
+cube01 node_ip=192.168.178.201
+#cube02 main_ip=192.168.178.201 # alawys use the main IP var, this could be put in a better place actually (var files)
+cube03 main_ip=192.168.178.201
+[main]
+cube01 node_ip=192.168.178.201
+[worker]
+#cube02 main_ip=192.168.178.201
+cube03 main_ip=192.168.178.201

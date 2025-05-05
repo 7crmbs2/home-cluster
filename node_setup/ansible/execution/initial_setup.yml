@@ -1,0 +1,3 @@
+---
+- import_playbook: ../playbooks/node_config.yml
+# - import_playbook: ../nfs_config.yaml

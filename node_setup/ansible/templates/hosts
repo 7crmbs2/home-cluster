@@ -1,0 +1,7 @@
+# /etc/hosts imported with ansible
+
+127.0.0.1 localhost  
+192.168.178.201 cube01 cube01.local  
+192.168.178.202 cube02 cube02.local  
+192.168.178.203 cube03 cube03.local  
+192.168.178.204 cube04 cube04.local

@@ -1,0 +1,11 @@
+---
+- hosts:              main
+  remote_user:        ubuntu
+  become: true
+  tasks:
+  - name:             install k3s as main node
+    shell:            "curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 644 --disable servicelb --token {{ k3s_main_pw }} --node-ip {{ node_ip }} --disable-cloud-controller --disable local-storage"
+    register: k3s_install_ouput
+
+  - debug:
+      msg:            "{{k3s_install_ouput.stdout_lines}}"

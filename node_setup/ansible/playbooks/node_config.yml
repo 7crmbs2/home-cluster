@@ -1,0 +1,50 @@
+---
+- hosts: uninstalled
+  remote_user: ubuntu
+  become: true
+  tasks:
+  - name:       Update hostname
+    hostname:
+      name:     "{{ hostname }}"
+
+  - name:       Import Hosts file
+    template:
+      src:      ../templates/hosts
+      dest:     /etc/hosts
+
+  - name:       Disable SWAP since kubernetes can't work with swap enabled (1/2)
+    shell: |
+      swapoff -a
+
+  - name:       Disable SWAP in fstab since kubernetes can't work with swap enabled (2/2)
+    replace:
+      path:     /etc/fstab
+      regexp:   '^([^#].*?\sswap\s+sw\s+.*)$'
+      replace:  '# \1'
+
+## TODO also install my ssh key for accessing - but actually I might do that one thing in the beginning for ease of install idk
+
+# TODO I dont think we need to do this in 24.04 but we shall see - doesn't seem like it
+# group_enable=cpuset cgroup_enable=memory cgroup_memory=1
+
+# TODO This also shouldnt be necessary for us - doesn't seem like it
+# root=PARTUUID=a97c7839-02 rootfstype=ext4 rootwait fsck.repair=yes net.ifnames=0 logo.nologo console=serial0,115200 console=tty1 group_enable=cpuset cgroup_enable=memory cgroup_memory=1
+
+  - name:       Configure helm repo
+    shell:      'curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list'
+
+  - name:       Update apt cache before installing new packages
+    apt:        update_cache=yes
+
+  - name:       Install multiple packages
+    register:   updatesys
+    apt:
+      name:
+        - zsh
+        - git
+        - vim
+        - iptables
+        - apt-transport-https
+        - helm
+        - nfs-common
+      state:    present

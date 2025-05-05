@@ -1,0 +1,25 @@
+---
+- hosts:              main
+  remote_user:        ubuntu
+  become: true
+  tasks:
+  - name:             add metallb to helm
+    shell:            "helm repo add metallb https://metallb.github.io/metallb"
+
+  - name:             deploy metallb via helm
+    shell:            "helm upgrade --install metallb metallb/metallb --create-namespace --namespace metallb-system --wait"
+    environment:      
+      KUBECONFIG:     /etc/rancher/k3s/k3s.yaml
+    register:         helm_install
+
+  - name:             put metallb pool crd onto node
+    template:
+      src:              ../templates/metallb_pool.yml
+      dest:             /home/ubuntu/metallb_pool.yml
+
+  - name:             deploy metallb crd for ip pool
+    shell:            "kubectl apply -f /home/ubuntu/metallb_pool.yml"
+    register:         metallb_crd_deploy
+
+  - debug:
+      msg:            "helm install: {{ helm_install }}, crd deploy: {{ metallb_crd_deploy }}"

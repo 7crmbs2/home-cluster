@@ -1,0 +1,2 @@
+---
+- import_playbook: ../playbooks/network_config.yml

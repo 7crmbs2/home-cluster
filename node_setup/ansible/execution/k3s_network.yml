@@ -1,0 +1,2 @@
+---
+- import_playbook: ../playbooks/k3s_networking.yml

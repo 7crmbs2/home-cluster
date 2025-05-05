@@ -1,0 +1,22 @@
+---
+- hosts:              no-network
+  remote_user:        ubuntu
+  become: true
+  tasks:
+  - name:             Disable use of cloud init stuff from ubuntu
+    template:
+      src:              ../templates/disable_cloudinit.cfg
+      dest:             /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
+
+  - name:             Updating Network Configuration
+    template:
+      src:              ../templates/netplan.yml
+      dest:             /etc/netplan/config.yaml
+      mode:             0600
+    vars:
+      specific_node_ip: "{{node_ip}}"
+    notify:             start netplan
+
+  handlers:
+    - name:           start netplan
+      shell:            netplan apply

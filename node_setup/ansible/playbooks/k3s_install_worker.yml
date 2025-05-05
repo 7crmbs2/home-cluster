@@ -1,0 +1,11 @@
+---
+- hosts:              worker
+  remote_user:        ubuntu
+  become: true
+  tasks:
+  - name:             install k3s as worker node
+    shell:            "curl -sfL https://get.k3s.io | K3S_URL=https://{{ main_ip }}:6443 K3S_TOKEN={{ k3s_main_pw }} sh -"
+    register: k3s_install_ouput
+    
+  - debug:
+      msg: "{{k3s_install_ouput.stdout_lines}}"
