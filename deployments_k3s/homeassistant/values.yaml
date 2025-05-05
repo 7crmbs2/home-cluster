@@ -101,20 +101,20 @@ dnsConfig: {}
   #   - name: ndots
   #     value: "2"
 
-# DISABLED FOR TRAEFIK USE
+# DISABLED FOR TRAEFIK USE I actually think I have to enable this
 # Service settings
-# service:
-#   # Service type (ClusterIP, NodePort, LoadBalancer, or ExternalName)
-#   type: ClusterIP
-#   # Service port
-#   port: 80
-#   # Annotations to add to the service
-#   annotations: {}
+service:
+  # Service type (ClusterIP, NodePort, LoadBalancer, or ExternalName)
+  type: LoadBalancer
+  # Service port
+  port: 80
+  # Annotations to add to the service
+  annotations: {}
 
 # Ingress settings
 ingress:
   # Enable ingress for home assistant
-  enabled: true
+  enabled: false
   # Enable external ingress (cannot be true when ingress.enabled is true)
   external: false
   className: "homeassistant-ingress"
