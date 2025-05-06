@@ -17,5 +17,5 @@ maintainers:
     email: julian@diluz.io
 dependencies:
   - name: jellyfin
-    version: 10.10.6
+    version: 2.3.0
     repository: https://jellyfin.github.io/jellyfin-helm
