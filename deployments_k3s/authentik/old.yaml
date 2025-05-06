@@ -1,0 +1,75 @@
+authentik:
+  authentik:
+    secret_key: "replaceinargocdPleaseGenerateA50CharKey"
+    # This sends anonymous usage-data, stack traces on errors and
+    # performance data to sentry.io, and is fully opt-in
+    error_reporting:
+      enabled: true
+    postgresql:
+      password: "replaceinargocdThisIsNotASecurePassword"
+    # email:
+    #   # -- SMTP Server emails are sent from, fully optional
+    #   host: "smtp.servivum.com"
+    #   # -- SMTP server port
+    #   port: 587
+    #   # -- SMTP credentials, when left empty, no authentication will be done
+    #   username: "noreply@diluzio.dev"
+    #   # -- SMTP credentials, when left empty, no authentication will be done
+    #   password: "replaceinargocdEMAIL_PASSWORD"
+    #   # -- Enable either use_tls or use_ssl, they can't be enabled at the same time.
+    #   use_tls: true
+    #   # -- Enable either use_tls or use_ssl, they can't be enabled at the same time.
+    #   use_ssl: false
+    #   # -- Connection timeout
+    #   timeout: 30
+    #   # -- Email from address, can either be in the format "foo@bar.baz" or "authentik <foo@bar.baz>"
+    #   from: "auth.cluster.diluz.io <noreply@diluzio.dev>"
+    server:
+      resources:
+        requests:
+          cpu: 200m
+          memory: 128Mi
+    worker:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+    #  affinity:
+    #    nodeAffinity:
+    #      preferredDuringSchedulingIgnoredDuringExecution:
+    #        - weight: 1
+    #          preference:
+    #            matchExpressions:
+    #              - key: kubernetes.io/role
+    #                operator: In
+    #                values:
+    #                  - worker
+
+  postgresql:
+    enabled: true
+    auth:
+      # TODO override in consumer (e.g. in argoCD directly)
+      password: "replaceinargocdThisIsNotASecurePassword"
+    primary:
+      persistence:
+        enabled: true
+        storageClass: nfs-client
+        accessMode: ReadWriteOnce
+        size: 20Gi
+      startupProbe:
+        enabled: true
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              preference:
+                matchExpressions:
+                  - key: kubernetes.io/role
+                    operator: In
+                    values:
+                      - worker
+  redis:
+    enabled: true
+    master:
+      persistence:
+        enabled: false
