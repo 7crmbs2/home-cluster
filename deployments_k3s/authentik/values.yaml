@@ -45,8 +45,24 @@ authentik:
     #                values:
     #                  - worker
   server:
+    # Ingress settings
     ingress:
-      enabled: false
+      # Enable ingress
+      enabled: true
+      className: "traefik"
+      labels: {}
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        # kubernetes.io/tls-acme: "true"
+      hosts:
+        - host: authentik.local
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
+      tls: []
+      #  - secretName: chart-example-tls
+      #    hosts:
+      #      - chart-example.local
 
   postgresql:
     enabled: true
