@@ -11,11 +11,11 @@ keywords:
   - self-hosted
 version: 1.0.0
 sources:
-  - https://github.com/jellyfin/jellyfin-helm/tree/master/charts/jellyfin
+  - https://jellyfin.github.io/jellyfin-helm
 maintainers:
   - name: julian
     email: julian@diluz.io
 dependencies:
   - name: jellyfin
     version: 10.10.6
-    repository: https://github.com/jellyfin/jellyfin-helm/tree/master/charts/jellyfin
+    repository: https://jellyfin.github.io/jellyfin-helm
