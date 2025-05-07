@@ -1,6 +1,7 @@
+---
 apiVersion: v2
 name: jellyfin
-description: A Helm chart for Jellyfin Media Server
+description: Jellyfin Media Server
 type: application
 home: https://jellyfin.org/
 icon: https://jellyfin.org/images/logo.svg
@@ -8,5 +9,13 @@ keywords:
   - jellyfin
   - media
   - self-hosted
-version: 2.3.0
-appVersion: 10.10.6
+version: 1.0.0
+sources:
+  - https://jellyfin.github.io/jellyfin-helm
+maintainers:
+  - name: julian
+    email: julian@diluz.io
+dependencies:
+  - name: jellyfin
+    version: 2.3.0
+    repository: https://jellyfin.github.io/jellyfin-helm
