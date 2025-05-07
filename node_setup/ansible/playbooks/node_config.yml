@@ -47,4 +47,5 @@
         - apt-transport-https
         - helm
         - nfs-common
+        - borgbackup
       state:    present
