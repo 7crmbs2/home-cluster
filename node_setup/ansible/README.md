@@ -32,6 +32,16 @@ cd ansible
 ansible-playbook ./execution/initial_network.yml -i inventory --check
 ```
 
+## Creating a backup
+
+We use borg and storage box for backups.
+
+```bash
+cd ansible
+
+ansible-playbook ./execution/borg_backup.yml -i inventory -e @secrets.enc --ask-vault-pass --check
+```
+
 ## Using Ansible Vault
 
 ### Running Playbooks

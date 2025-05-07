@@ -15,3 +15,5 @@ cube01 node_ip=192.168.178.201
 [worker]
 #cube02 main_ip=192.168.178.201
 cube03 main_ip=192.168.178.201
+[nfs]
+cube03
