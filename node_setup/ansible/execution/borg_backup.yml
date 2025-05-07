@@ -1,0 +1,46 @@
+---
+- hosts:              main
+  remote_user:        ubuntu
+  become: true
+  tasks:
+  - name:             Create backup script on main node
+    template:
+      src:            ../templates/backup_k3s.sh
+      dest:           /usr/local/bin/backup_k3s.sh
+      mode:           0777
+
+  - name:             Creates directory for logs
+    ansible.builtin.file:
+      path:           /var/log/borg
+      state:          directory
+
+  - name:             Create a simple cron job
+    cron:
+      name:           daily_backup
+      weekday:        "*"
+      minute:         "0"
+      hour:           "0"
+      job:            "/usr/local/bin/backup_k3s.sh > /dev/null 2>&1"
+
+- hosts:              nfs
+  remote_user:        ubuntu
+  become: true
+  tasks:
+  - name:             Create backup script on node 3 for nfs backup
+    template:
+      src:            ../templates/backup_nfs.sh
+      dest:           /usr/local/bin/backup_nfs.sh
+      mode:           0777
+
+  - name:             Creates directory for logs
+    ansible.builtin.file:
+      path:           /var/log/borg
+      state:          directory
+
+  - name:             Create a simple cron job
+    cron:
+      name:           daily_backup
+      weekday:        "*"
+      minute:         "0"
+      hour:           "0"
+      job:            "/usr/local/bin/backup_nfs.sh > /dev/null 2>&1"
