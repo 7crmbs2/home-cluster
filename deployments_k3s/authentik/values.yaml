@@ -1,147 +1,147 @@
-# -- Provide a name in place of `authentik`. Prefer using global.nameOverride if possible
-nameOverride: ""
-# -- String to fully override `"authentik.fullname"`. Prefer using global.fullnameOverride if possible
-fullnameOverride: ""
-# -- Override the Kubernetes version, which is used to evaluate certain manifests
-kubeVersionOverride: ""
-
-
-## Globally shared configuration for authentik components.
-global:
-  # -- Provide a name in place of `authentik`
-  nameOverride: ""
-  # -- String to fully override `"authentik.fullname"`
-  fullnameOverride: ""
-  # -- A custom namespace to override the default namespace for the deployed resources.
-  namespaceOverride: ""
-  # -- Common labels for all resources.
-  additionalLabels: {}
-    # app: authentik
-
-  # Number of old deployment ReplicaSets to retain. The rest will be garbage collected.
-  revisionHistoryLimit: 3
-
-  # Default image used by all authentik components. For GeoIP configuration, see the geoip values below.
-  image:
-    # -- If defined, a repository applied to all authentik deployments
-    repository: ghcr.io/goauthentik/server
-    # -- Overrides the global authentik whose default is the chart appVersion
-    tag: ""
-    # -- If defined, an image digest applied to all authentik deployments
-    digest: ""
-    # -- If defined, an imagePullPolicy applied to all authentik deployments
-    pullPolicy: IfNotPresent
-
-  # -- Secrets with credentials to pull images from a private registry
-  imagePullSecrets: []
-
-  # -- Annotations for all deployed Deployments
-  deploymentAnnotations: {}
-
-  # -- Annotations for all deployed pods
-  podAnnotations: {}
-
-  # -- Annotations for all deployed secrets
-  secretAnnotations: {}
-
-  # -- Labels for all deployed pods
-  podLabels: {}
-
-  # -- Add Prometheus scrape annotations to all metrics services. This can be used as an alternative to the ServiceMonitors.
-  addPrometheusAnnotations: false
-
-  # -- Toggle and define pod-level security context.
-  # @default -- `{}` (See [values.yaml])
-  securityContext: {}
-    # runAsUser: 1000
-    # runAsGroup: 1000
-    # fsGroup: 1000
-
-  # -- Mapping between IP and hostnames that will be injected as entries in the pod's hosts files
-  hostAliases: []
-    # - ip: 10.20.30.40
-    #   hostnames:
-    #     - my.hostname
-
-  # -- Default priority class for all components
-  priorityClassName: ""
-
-  # -- Default node selector for all components
-  nodeSelector: {}
-
-  # -- Default tolerations for all components
-  tolerations: []
-
-  # Default affinity preset for all components
-  affinity:
-    # -- Default pod anti-affinity rules. Either: `none`, `soft` or `hard`
-    podAntiAffinity: soft
-    # Node affinity rules
-    nodeAffinity:
-      # -- Default node affinity rules. Either `none`, `soft` or `hard`
-      type: hard
-      # -- Default match expressions for node affinity
-      matchExpressions: []
-        # - key: topology.kubernetes.io/zone
-        #   operator: In
-        #   values:
-        #     - zonea
-        #     - zoneb
-
-  # -- Default [TopologySpreadConstraints] rules for all components
-  ## Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
-  topologySpreadConstraints: []
-    # - maxSkew: 1
-    #   topologyKey: topology.kubernetes.io/zone
-    #   whenUnsatisfiable: DoNotSchedule
-
-  # -- Deployment strategy for all deployed Deployments
-  deploymentStrategy: {}
-    # type: RollingUpdate
-    # rollingUpdate:
-    #   maxSurge: 25%
-    #   maxUnavailable: 25%
-
-  # -- Environment variables to pass to all deployed Deployments. Does not apply to GeoIP
-  # See configuration options at https://goauthentik.io/docs/installation/configuration/
-  # @default -- `[]` (See [values.yaml])
-  env: []
-    # - name: AUTHENTIK_VAR_NAME
-    #   value: VALUE
-    # - name: AUTHENTIK_VAR_OTHER
-    #   valueFrom:
-    #     secretKeyRef:
-    #       name: secret-name
-    #       key: secret-key
-    # - name: AUTHENTIK_VAR_ANOTHER
-    #   valueFrom:
-    #     configMapKeyRef:
-    #       name: config-map-name
-    #       key: config-map-key
-
-  # -- envFrom to pass to all deployed Deployments. Does not apply to GeoIP
-  # @default -- `[]` (See [values.yaml])
-  envFrom: []
-    # - configMapRef:
-    #     name: config-map-name
-    # - secretRef:
-    #     name: secret-name
-
-  # -- Additional volumeMounts to all deployed Deployments. Does not apply to GeoIP
-  # @default -- `[]` (See [values.yaml])
-  volumeMounts: []
-    # - name: custom
-    #   mountPath: /custom
-
-  # -- Additional volumes to all deployed Deployments.
-  # @default -- `[]` (See [values.yaml])
-  volumes: []
-    # - name: custom
-    #   emptyDir: {}
-
-
-## Authentik configuration
 authentik:
+  # -- Provide a name in place of `authentik`. Prefer using global.nameOverride if possible
+  nameOverride: ""
+  # -- String to fully override `"authentik.fullname"`. Prefer using global.fullnameOverride if possible
+  fullnameOverride: ""
+  # -- Override the Kubernetes version, which is used to evaluate certain manifests
+  kubeVersionOverride: ""
+
+
+  ## Globally shared configuration for authentik components.
+  global:
+    # -- Provide a name in place of `authentik`
+    nameOverride: ""
+    # -- String to fully override `"authentik.fullname"`
+    fullnameOverride: ""
+    # -- A custom namespace to override the default namespace for the deployed resources.
+    namespaceOverride: ""
+    # -- Common labels for all resources.
+    additionalLabels: {}
+      # app: authentik
+
+    # Number of old deployment ReplicaSets to retain. The rest will be garbage collected.
+    revisionHistoryLimit: 3
+
+    # Default image used by all authentik components. For GeoIP configuration, see the geoip values below.
+    image:
+      # -- If defined, a repository applied to all authentik deployments
+      repository: ghcr.io/goauthentik/server
+      # -- Overrides the global authentik whose default is the chart appVersion
+      tag: ""
+      # -- If defined, an image digest applied to all authentik deployments
+      digest: ""
+      # -- If defined, an imagePullPolicy applied to all authentik deployments
+      pullPolicy: IfNotPresent
+
+    # -- Secrets with credentials to pull images from a private registry
+    imagePullSecrets: []
+
+    # -- Annotations for all deployed Deployments
+    deploymentAnnotations: {}
+
+    # -- Annotations for all deployed pods
+    podAnnotations: {}
+
+    # -- Annotations for all deployed secrets
+    secretAnnotations: {}
+
+    # -- Labels for all deployed pods
+    podLabels: {}
+
+    # -- Add Prometheus scrape annotations to all metrics services. This can be used as an alternative to the ServiceMonitors.
+    addPrometheusAnnotations: false
+
+    # -- Toggle and define pod-level security context.
+    # @default -- `{}` (See [values.yaml])
+    securityContext: {}
+      # runAsUser: 1000
+      # runAsGroup: 1000
+      # fsGroup: 1000
+
+    # -- Mapping between IP and hostnames that will be injected as entries in the pod's hosts files
+    hostAliases: []
+      # - ip: 10.20.30.40
+      #   hostnames:
+      #     - my.hostname
+
+    # -- Default priority class for all components
+    priorityClassName: ""
+
+    # -- Default node selector for all components
+    nodeSelector: {}
+
+    # -- Default tolerations for all components
+    tolerations: []
+
+    # Default affinity preset for all components
+    affinity:
+      # -- Default pod anti-affinity rules. Either: `none`, `soft` or `hard`
+      podAntiAffinity: soft
+      # Node affinity rules
+      nodeAffinity:
+        # -- Default node affinity rules. Either `none`, `soft` or `hard`
+        type: hard
+        # -- Default match expressions for node affinity
+        matchExpressions: []
+          # - key: topology.kubernetes.io/zone
+          #   operator: In
+          #   values:
+          #     - zonea
+          #     - zoneb
+
+    # -- Default [TopologySpreadConstraints] rules for all components
+    ## Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
+    topologySpreadConstraints: []
+      # - maxSkew: 1
+      #   topologyKey: topology.kubernetes.io/zone
+      #   whenUnsatisfiable: DoNotSchedule
+
+    # -- Deployment strategy for all deployed Deployments
+    deploymentStrategy: {}
+      # type: RollingUpdate
+      # rollingUpdate:
+      #   maxSurge: 25%
+      #   maxUnavailable: 25%
+
+    # -- Environment variables to pass to all deployed Deployments. Does not apply to GeoIP
+    # See configuration options at https://goauthentik.io/docs/installation/configuration/
+    # @default -- `[]` (See [values.yaml])
+    env: []
+      # - name: AUTHENTIK_VAR_NAME
+      #   value: VALUE
+      # - name: AUTHENTIK_VAR_OTHER
+      #   valueFrom:
+      #     secretKeyRef:
+      #       name: secret-name
+      #       key: secret-key
+      # - name: AUTHENTIK_VAR_ANOTHER
+      #   valueFrom:
+      #     configMapKeyRef:
+      #       name: config-map-name
+      #       key: config-map-key
+
+    # -- envFrom to pass to all deployed Deployments. Does not apply to GeoIP
+    # @default -- `[]` (See [values.yaml])
+    envFrom: []
+      # - configMapRef:
+      #     name: config-map-name
+      # - secretRef:
+      #     name: secret-name
+
+    # -- Additional volumeMounts to all deployed Deployments. Does not apply to GeoIP
+    # @default -- `[]` (See [values.yaml])
+    volumeMounts: []
+      # - name: custom
+      #   mountPath: /custom
+
+    # -- Additional volumes to all deployed Deployments.
+    # @default -- `[]` (See [values.yaml])
+    volumes: []
+      # - name: custom
+      #   emptyDir: {}
+
+
+  ## Authentik configuration
   authentik:
     # -- whether to create the authentik configuration secret
     enabled: true
