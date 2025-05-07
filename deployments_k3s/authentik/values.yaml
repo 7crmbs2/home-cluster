@@ -1,12 +1,11 @@
+authentik:
+  # -- Provide a name in place of `authentik`. Prefer using global.nameOverride if possible
+  nameOverride: ""
+  # -- String to fully override `"authentik.fullname"`. Prefer using global.fullnameOverride if possible
+  fullnameOverride: ""
+  # -- Override the Kubernetes version, which is used to evaluate certain manifests
+  kubeVersionOverride: ""
 
-# -- Provide a name in place of `authentik`. Prefer using global.nameOverride if possible
-nameOverride: ""
-# -- String to fully override `"authentik.fullname"`. Prefer using global.fullnameOverride if possible
-fullnameOverride: ""
-# -- Override the Kubernetes version, which is used to evaluate certain manifests
-kubeVersionOverride: ""
-
-global:
   ## Globally shared configuration for authentik components.
   global:
     # -- Provide a name in place of `authentik`
@@ -140,7 +139,6 @@ global:
       # - name: custom
       #   emptyDir: {}
 
-authentik:
   ## Authentik configuration
   authentik:
     # -- whether to create the authentik configuration secret
@@ -1060,7 +1058,7 @@ authentik:
 
   redis:
     # -- enable the Bitnami Redis chart. Refer to https://github.com/bitnami/charts/blob/main/bitnami/redis/ for possible values.
-    enabled: false
+    enabled: true
     architecture: standalone
     auth:
       enabled: false
