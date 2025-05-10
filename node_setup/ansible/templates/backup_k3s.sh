@@ -18,7 +18,7 @@ export BORG_PASSPHRASE='{{ borgPassphrase }}'
 
 export LOG='/var/log/borg/backup.log'
 export BACKUP_USER='{{ borgUsername }}'
-export REPOSITORY_DIR='cluster-backup'
+export REPOSITORY_DIR='backup'
 
 ## Tip: If using with a Backup Space you have to use
 ## 'your-storagebox.de' instead of 'your-backup.de'
@@ -53,6 +53,8 @@ echo "###### Backup started: $(date) ######"
 echo "Backing up k3s ..."
 borg create --stats                                 \
     $REPOSITORY::'k3s-{now:%Y-%m-%d_%H:%M}'         \
-    /var/lib/rancher/k3s/server/db/snapshots
+    /var/lib/rancher/k3s/server/db/state.db         \
+    /var/lib/rancher/k3s/server/db/state.db-shm     \
+    /var/lib/rancher/k3s/server/db/state.db-wal
 
 echo "###### Backup ended: $(date) ######"

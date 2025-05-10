@@ -42,6 +42,11 @@ cd ansible
 ansible-playbook ./execution/borg_backup.yml -i inventory -e @secrets.enc --ask-vault-pass --check
 ```
 
+Before the backup will work we also have to init it once.
+```bash
+borg init ssh://uXXXXXX@uXXXXXX.your-storagebox.de:23/./backup --encryption=repokey
+```
+
 ## Using Ansible Vault
 
 ### Running Playbooks

@@ -42,5 +42,5 @@
       name:           daily_backup
       weekday:        "*"
       minute:         "0"
-      hour:           "0"
+      hour:           "2" # Do this 2h later than the k3s backup to ensure the lock is not active anymore, drive backup takes way longer so do this later
       job:            "/usr/local/bin/backup_nfs.sh > /dev/null 2>&1"

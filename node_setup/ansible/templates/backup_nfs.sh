@@ -18,7 +18,7 @@ export BORG_PASSPHRASE='{{ borgPassphrase }}'
 
 export LOG='/var/log/borg/backup.log'
 export BACKUP_USER='{{ borgUsername }}'
-export REPOSITORY_DIR='cluster-backup'
+export REPOSITORY_DIR='backup'
 
 ## Tip: If using with a Backup Space you have to use
 ## 'your-storagebox.de' instead of 'your-backup.de'
