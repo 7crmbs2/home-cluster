@@ -26,10 +26,10 @@ spec:
   values:
     controllers:
       adguard:
-        annotations:
-          # Since we don't link the config map here but use k8s-sidecar,
-          # we have to tell stakater the config map it needs to monitor
-          configmap.reloader.stakater.com/reload: *app
+        # annotations:
+        #   # Since we don't link the config map here but use k8s-sidecar,
+        #   # we have to tell stakater the config map it needs to monitor
+        #   configmap.reloader.stakater.com/reload: *app
         pod:
           dnsConfig:
             options:
