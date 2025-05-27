@@ -79,7 +79,7 @@ service:
         enabled: true
         port: 80
         protocol: TCP
-        targetPort: 80
+        targetPort: 3000
       dns-tcp:
         enabled: true
         port: 53
