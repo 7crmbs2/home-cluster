@@ -26,7 +26,7 @@ metadata:
     spec.ingressClassName: traefik
 spec:
   rules:
-    - host: traefik.cluster
+    - host: traefik.local
       http:
         paths:
           - path: /
