@@ -74,7 +74,7 @@ ingress:
       gethomepage.dev/name: AdGuard
       gethomepage.dev/widget.url: http://adguard.network.svc.cluster.local:80
     hosts:
-      - host: adguard.local
+      - host: adguard.cluster
         paths:
           - path: /
             service:
