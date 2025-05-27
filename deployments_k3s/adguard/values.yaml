@@ -7,9 +7,9 @@ controllers:
         options:
           - { name: ndots, value: "1" }
       securityContext:
-        runAsNonRoot: true # Adguard doesn't support running as non-root - but maybe it only needs it for the startup (persistent volume init)
-        # runAsUser: 0
-        runAsUser: 65534
+        runAsNonRoot: true # Adguard doesn't support running as non-root
+        runAsUser: 0
+        # runAsUser: 65534
         runAsGroup: 65534
         fsGroup: 65534
         fsGroupChangePolicy: OnRootMismatch
