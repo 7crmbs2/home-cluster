@@ -100,7 +100,7 @@ jellyfin:
       kubernetes.io/ingress.class: traefik
       # kubernetes.io/tls-acme: "true"
     hosts:
-      - host: jellyfin.local
+      - host: jellyfin.cluster
         paths:
           - path: /
             pathType: ImplementationSpecific
