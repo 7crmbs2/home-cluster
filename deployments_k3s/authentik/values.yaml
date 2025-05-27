@@ -58,7 +58,7 @@ authentik:
       # -- List of ingress hosts
       hosts:
         # - authentik.domain.tld
-        - authentik.local
+        - authentik.cluster
 
       # -- List of ingress paths
       paths:
