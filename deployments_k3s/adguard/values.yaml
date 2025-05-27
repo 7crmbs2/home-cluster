@@ -7,7 +7,7 @@ controllers:
         options:
           - { name: ndots, value: "1" }
       securityContext:
-        runAsNonRoot: true # Adguard doesn't support running as non-root
+        runAsNonRoot: false # Adguard doesn't support running as non-root
         runAsUser: 0
         # runAsUser: 65534
         runAsGroup: 65534
