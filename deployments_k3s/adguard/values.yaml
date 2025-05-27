@@ -45,11 +45,11 @@ controllers:
           pullPolicy: IfNotPresent
         env:
           TZ: UTC
-        probes:
-          liveness:
-            enabled: true
-            custom: false
-            type: TCP
+        # probes:
+        #   liveness:
+        #     enabled: true
+        #     custom: false
+        #     type: TCP
           # readiness: *probes
         resources:
           requests:
