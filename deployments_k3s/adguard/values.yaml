@@ -25,7 +25,7 @@ spec:
     keepHistory: false
   values:
     controllers:
-      adguard:
+      main:
         # annotations:
         #   # Since we don't link the config map here but use k8s-sidecar,
         #   # we have to tell stakater the config map it needs to monitor
@@ -63,6 +63,7 @@ spec:
             image:
               repository: adguard/adguardhome
               tag: v0.107.54@sha256:ec59d9d8d083b74620f827879bee7ad88621f96bc0c4347c84c176ffa349484c
+              pullPolicy: IfNotPresent
             env:
               TZ: UTC
             probes:
@@ -88,8 +89,8 @@ spec:
           #     METHOD: WATCH
           #   resources: *configSyncResources
     service:
-      app:
-        controller: adguard
+      main:
+        controller: main
         type: LoadBalancer
         externalTrafficPolicy: Local
         annotations:
@@ -116,7 +117,7 @@ spec:
             protocol: TCP
             targetPort: 853
     ingress:
-      app:
+      main:
         enabled: true
         annotations:
           ## Enable Oauth2 Authentication
@@ -135,7 +136,7 @@ spec:
             paths:
               - path: /
                 service:
-                  identifier: app
+                  identifier: main
                   port: http
         # tls:
         #  - hosts:
@@ -148,13 +149,13 @@ spec:
 
     persistence:
       config-work:
-        storageClass: openebs-hostpath
+        storageClass: nfs-client
         accessMode: ReadWriteOnce
         size: 1Gi
         globalMounts:
           - path: /opt/adguardhome/work
       config-conf:
-        storageClass: openebs-hostpath
+        storageClass: nfs-client
         accessMode: ReadWriteOnce
         size: 1Gi
         globalMounts:
