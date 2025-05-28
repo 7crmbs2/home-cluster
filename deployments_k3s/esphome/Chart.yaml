@@ -1,0 +1,12 @@
+---
+apiVersion: v2
+description: A chart for esphome in k3s
+name: esphome
+version: 1.0.0
+maintainers:
+  - name: julian
+    email: julian@diluz.io
+dependencies:
+  - name: common
+    version: 4.0.1
+    repository: https://bjw-s-labs.github.io/helm-charts/
