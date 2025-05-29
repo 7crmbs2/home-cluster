@@ -31,19 +31,24 @@ service:
     ports:
       http:
         enabled: true
+        port: 80
+        protocol: TCP
+        targetPort: 80
+      esp:
+        enabled: true
         port: 6052
         protocol: TCP
         targetPort: 6052
-ingress:
-  main:
-    enabled: true
-    hosts:
-      - host: esphome.cluster
-        paths:
-          - path: /
-            service:
-              identifier: main
-              port: http
+# ingress: # Do not use ingress as the esps probably need to be configured with the correct IP as endpoint to also do the configuration correctly
+#   main:
+#     enabled: true
+#     hosts:
+#       - host: esphome.cluster
+#         paths:
+#           - path: /
+#             service:
+#               identifier: main
+#               port: http
 persistence:
   config:
     storageClass: nfs-client
