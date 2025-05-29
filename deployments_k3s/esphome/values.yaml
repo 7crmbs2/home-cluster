@@ -36,9 +36,9 @@ service:
         targetPort: 80
       https:
         enabled: true
-        port: 443
+        port: 6053
         protocol: TCP
-        targetPort: 443
+        targetPort: 6053
       esp:
         enabled: true
         port: 6052
