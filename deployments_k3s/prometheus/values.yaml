@@ -1307,12 +1307,12 @@ kube-prometheus-stack:
       ## IngressClassName for Grafana Ingress.
       ## Should be provided if Ingress is enable.
       ##
-      # ingressClassName: nginx
+      ingressClassName: traefik
 
       ## Annotations for Grafana Ingress
       ##
-      annotations: {}
-        # kubernetes.io/ingress.class: nginx
+      annotations:
+        kubernetes.io/ingress.class: traefik
         # kubernetes.io/tls-acme: "true"
 
       ## Labels to be added to the Ingress
