@@ -170,7 +170,7 @@ kube-prometheus-stack:
     create: true
     rules:
       alertmanager: true
-      etcd: true
+      # etcd: true
       configReloaders: true
       general: true
       k8sContainerCpuUsageSecondsTotal: true
@@ -223,73 +223,73 @@ kube-prometheus-stack:
 
     ## Additional labels for specific PrometheusRule alert groups
     additionalRuleGroupLabels:
-      alertmanager: {}
-      etcd: {}
-      configReloaders: {}
       general: {}
       k8sContainerCpuUsageSecondsTotal: {}
       k8sContainerMemoryCache: {}
-      k8sContainerMemoryRss: {}
-      k8sContainerMemorySwap: {}
       k8sContainerResource: {}
-      k8sPodOwner: {}
       kubeApiserverAvailability: {}
-      kubeApiserverBurnrate: {}
       kubeApiserverHistogram: {}
-      kubeApiserverSlos: {}
       kubeControllerManager: {}
-      kubelet: {}
       kubeProxy: {}
       kubePrometheusGeneral: {}
-      kubePrometheusNodeRecording: {}
-      kubernetesApps: {}
       kubernetesResources: {}
       kubernetesStorage: {}
       kubernetesSystem: {}
       kubeSchedulerAlerting: {}
-      kubeSchedulerRecording: {}
-      kubeStateMetrics: {}
       network: {}
       node: {}
       nodeExporterAlerting: {}
       nodeExporterRecording: {}
       prometheus: {}
       prometheusOperator: {}
+      # alertmanager: {}
+      # etcd: {}
+      # configReloaders: {}
+      # k8sContainerMemoryRss: {}
+      # k8sContainerMemorySwap: {}
+      # k8sPodOwner: {}
+      # kubeApiserverBurnrate: {}
+      # kubeApiserverSlos: {}
+      # kubelet: {}
+      # kubePrometheusNodeRecording: {}
+      # kubernetesApps: {}
+      # kubeSchedulerRecording: {}
+      # kubeStateMetrics: {}
 
     ## Additional annotations for specific PrometheusRule alerts groups
     additionalRuleGroupAnnotations:
-      alertmanager: {}
-      etcd: {}
-      configReloaders: {}
       general: {}
       k8sContainerCpuUsageSecondsTotal: {}
       k8sContainerMemoryCache: {}
-      k8sContainerMemoryRss: {}
-      k8sContainerMemorySwap: {}
       k8sContainerResource: {}
-      k8sPodOwner: {}
       kubeApiserverAvailability: {}
-      kubeApiserverBurnrate: {}
       kubeApiserverHistogram: {}
-      kubeApiserverSlos: {}
       kubeControllerManager: {}
-      kubelet: {}
       kubeProxy: {}
       kubePrometheusGeneral: {}
-      kubePrometheusNodeRecording: {}
-      kubernetesApps: {}
       kubernetesResources: {}
       kubernetesStorage: {}
       kubernetesSystem: {}
       kubeSchedulerAlerting: {}
-      kubeSchedulerRecording: {}
-      kubeStateMetrics: {}
       network: {}
       node: {}
       nodeExporterAlerting: {}
       nodeExporterRecording: {}
       prometheus: {}
       prometheusOperator: {}
+      # alertmanager: {}
+      # etcd: {}
+      # configReloaders: {}
+      # k8sContainerMemoryRss: {}
+      # k8sContainerMemorySwap: {}
+      # k8sPodOwner: {}
+      # kubeApiserverBurnrate: {}
+      # kubeApiserverSlos: {}
+      # kubelet: {}
+      # kubePrometheusNodeRecording: {}
+      # kubernetesApps: {}
+      # kubeSchedulerRecording: {}
+      # kubeStateMetrics: {}
 
     additionalAggregationLabels: []
 
