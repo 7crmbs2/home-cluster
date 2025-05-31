@@ -1230,7 +1230,7 @@ kube-prometheus-stack:
 
     ## Deploy default dashboards
     ##
-    defaultDashboardsEnabled: true
+    defaultDashboardsEnabled: false
 
     ## Deploy GrafanaDashboard CRDs that reference dashboards from ConfigMaps when grafana-operator is used
     ## These settings control how dashboards are integrated with the Grafana Operator
