@@ -1281,7 +1281,7 @@ kube-prometheus-stack:
     ## Timezone for the default dashboards
     ## Other options are: browser or a specific timezone, i.e. Europe/Luxembourg
     ##
-    defaultDashboardsTimezone: utc
+    defaultDashboardsTimezone: cet
 
     ## Editable flag for the default dashboards
     ##
@@ -3015,8 +3015,8 @@ kube-prometheus-stack:
       # cilium:
       #   egress:
 
-      ## match labels used in selector
-      # matchLabels: {}
+      # match labels used in selector
+      matchLabels: {}
 
     ## Service account for Prometheus Operator to use.
     ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
