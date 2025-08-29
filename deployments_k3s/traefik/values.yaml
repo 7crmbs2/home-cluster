@@ -1,0 +1,5 @@
+# Default TLS certificate
+tlsStore:
+  default:
+    defaultCertificate:
+      secretName: traefik-default-cert
