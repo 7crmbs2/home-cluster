@@ -24,20 +24,38 @@ controllers:
 service:
   main:
     controller: main
-    type: LoadBalancer
-    externalTrafficPolicy: Local
+    type: ClusterIP
+    # externalTrafficPolicy: Local
     ports:
       http:
         enabled: true
         port: 80
         protocol: TCP
-        targetPort: 80
+        targetPort: 3000
+      https:
+        enabled: true
+        port: 443
+        protocol: TCP
+        targetPort: 3001
+      websocket:
+        enabled: true
+        port: 8082
+        protocol: TCP
+        targetPort: 8082
 ingress:
   main:
     enabled: true
     hosts:
       - host: obsidian.cluster
         paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
+          - path: /
+            service:
+              identifier: main
+              port: https
           - path: /
             service:
               identifier: main
