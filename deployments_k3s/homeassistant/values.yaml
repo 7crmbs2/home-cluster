@@ -177,10 +177,6 @@ home-assistant:
       - 172.16.0.0/12
       - 192.168.0.0/16
       - 127.0.0.0/8
-    ## Adding some of my own things for authentik integration - change these values inside argoCD
-    authentik_integration:
-      client_id: "TODOCHANGEME"
-      client_secret: "TODOCHANGEME"
     # Template for the configuration.yaml file
     # Used the `tpl` function to render the template, so you can use Go template functions
     templateConfig: |-
@@ -204,8 +200,8 @@ home-assistant:
       scene: !include scenes.yaml
 
       openid:
-        client_id: {{ .Values.configuration.authentik_integration.client_id }}
-        client_secret: {{ .Values.configuration.authentik_integration.client_secret }}
+        client_id: TODOCHANGEME
+        client_secret: TODOCHANGEME
         configure_url: "http://authentik.cluster/application/o/home-assistant/.well-known/openid-configuration"
         scope: "openid profile email"
         username_field: "preferred_username"
