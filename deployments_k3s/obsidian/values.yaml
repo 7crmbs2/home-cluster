@@ -45,6 +45,10 @@ service:
 ingress:
   main:
     enabled: true
+    tls:
+      - secretName: traefik-default-cert
+        hosts:
+          - obsidian.cluster
     hosts:
       - host: obsidian.cluster
         paths:
