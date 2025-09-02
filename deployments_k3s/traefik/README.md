@@ -31,6 +31,23 @@ kubectl create secret tls traefik-default-cert \
   -n kube-system
 ```
 
+Take the helm-config.yaml and move it to /var/lib/rancher/k3s/server/manifests/traefik-config.yaml on the cube01.
+
+
+TODO Maybe add the dashboard settings into there aswell
+
+
+
+
+
+
+
+
+
+
+
+OLD AND WRONG:
+
 Then upgrade the helm install:
 ```bash
 helm upgrade traefik traefik/traefik -n traefik -f values.yaml

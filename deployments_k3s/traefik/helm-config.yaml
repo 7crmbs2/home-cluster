@@ -1,0 +1,43 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    logs:
+      general:
+        level: ERROR
+
+    ports:
+      web:
+        port: 80
+        redirections:
+          entryPoint:
+            to: websecure
+            scheme: https
+            permanent: true
+      websecure:
+        port: 443
+        tls:
+          enabled: true
+          stores:
+            default:
+              defaultCertificate:
+                secretName: traefik-default-cert
+
+    ingressRoute:
+      dashboard:
+        enabled: false
+
+    persistence:
+      enabled: true
+      accessMode: ReadWriteOnce
+      storageClass: nfs-client
+      name: ssl-certs
+      size: 1Gi
+      path: /ssl-certs
+
+    ingressClass:
+      enabled: true
+      isDefaultClass: true
