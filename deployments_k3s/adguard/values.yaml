@@ -43,6 +43,11 @@ service:
     annotations:
       external-dns.alpha.kubernetes.io/hostname: "dns.local"
     ports:
+      webui:
+        enabled: true
+        port: 3000
+        protocol: TCP
+        targetPort: 3000
       http:
         enabled: true
         port: 80
