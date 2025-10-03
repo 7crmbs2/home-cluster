@@ -47,7 +47,7 @@ service:
         enabled: true
         port: 3000
         protocol: TCP
-        targetPort: 3000
+        targetPort: 3000 # fix this, use port 3000 on http and do target port 80
       http:
         enabled: true
         port: 80
