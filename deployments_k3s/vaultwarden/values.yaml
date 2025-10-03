@@ -55,9 +55,20 @@ controllers:
 service:
   main:
     controller: main
+    type: LoadBalancer
+    # annotations:
+    #   external-dns.alpha.kubernetes.io/hostname: "dns.local"
     ports:
       http:
+        enabled: true
         port: 80
+        protocol: TCP
+        targetPort: 80
+      https:
+        enabled: true
+        port: 443
+        protocol: TCP
+        targetPort: 443
 
 defaultPodOptions:
   affinity:
