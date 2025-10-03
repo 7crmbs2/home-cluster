@@ -68,6 +68,7 @@ home-assistant:
     # Enable 'hostPort' or not
     enabled: false
     port: 8123
+    # TODO this might be nessary for authentik SSO
 
   # Specifies if the containers should be started in hostNetwork mode.
   #
