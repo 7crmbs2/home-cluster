@@ -1,3 +1,14 @@
+# Update changes on traefik
+state: 03.10.2025
+
+traefik is done with k3s traefik!
+If this ever needs to be reapplied or something we can actually just apply the config on the server:
+
+```bash
+ssh ubuntu@cube01
+sudo kubectl apply -f /var/lib/rancher/k3s/server/manifests/traefik-config.yaml
+```
+
 # enable the traefik dashboard
 ```bash
 kubectl apply -f traefikdashboard.yaml
@@ -30,6 +41,20 @@ kubectl create secret tls traefik-default-cert \
   --key=cluster.key \
   -n kube-system
 ```
+
+Then we need to use this secret and put it into a TLS Store:
+```bash
+k apply -f tlsstore.yaml
+```
+
+After this we need to allow this self signed certificate on our nixos machine:
+```bash
+kubectl get secret traefik-default-cert -n kube-system -o jsonpath='{.data.tls\.crt}' | base64 --decode > traefik-wildcard.crt
+```
+
+
+
+
 
 Take the helm-config.yaml and move it to /var/lib/rancher/k3s/server/manifests/traefik-config.yaml on the cube01.
 
