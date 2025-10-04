@@ -34,16 +34,6 @@ immich:
         accessMode: ReadWriteOnce
         size: 1Gi
         storageClass: nfs-client
-      affinity:
-        nodeAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 1
-              preference:
-                matchExpressions:
-                  - key: kubernetes.io/role
-                    operator: In
-                    values:
-                      - worker
       resources:
         # limits:
         #   cpu: 100m
@@ -73,13 +63,3 @@ immich:
         accessMode: ReadWriteOnce
         size: 10Gi
         storageClass: nfs-client
-    affinity:
-      nodeAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 1
-            preference:
-              matchExpressions:
-                - key: kubernetes.io/role
-                  operator: In
-                  values:
-                    - worker
