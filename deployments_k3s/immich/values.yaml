@@ -43,6 +43,8 @@ immich:
           memory: 256Mi
   redis:
     enabled: true
+    image:
+      repository: bitnamilegacy/redis
 
   # Immich components
 
