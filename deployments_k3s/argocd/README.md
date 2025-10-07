@@ -19,3 +19,9 @@ Change the IP to one free from range defined for MetalLB.
 ```bash
 kubectl patch service argocd-server -n argocd --patch '{ "spec": { "type": "LoadBalancer", "loadBalancerIP": "192.168.178.206" } }'
 ```
+
+# Update
+
+```bash
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
