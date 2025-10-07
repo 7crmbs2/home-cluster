@@ -23,7 +23,7 @@ immich:
     server:
       enabled: true
       hosts:
-        host: immich.cluster
+      - host: immich.cluster
         ## Configure the paths for the host
         paths:
           - path: /
