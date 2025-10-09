@@ -1,27 +1,27 @@
+configuration:
+  oauth:
+    enabled: true
+    # The OpenID Connect discovery URL from Authentik
+    issuerUrl: https://authentik.cluster/application/o/immich/.well-known/openid-configuration
+    # Client credentials from your Authentik Application
+    clientId: "TODOCHANGEME"
+    clientSecret: "TODOCHANGEME"
+    # Requested scopes
+    scope: "openid email profile"
+    # Whether Immich should automatically create users after successful login
+    autoRegister: true
+    # Whether Immich should automatically redirect to Authentik login
+    autoLaunch: true
+    # Optional button text for UI
+    buttonText: "Step into the Juniverse Image Galery"
+    # Whether to use the Immich mobile redirect helper endpoint
+    mobileRedirectUriOverride: false
+    # You can explicitly define allowed redirect URIs if needed
+    redirectUris:
+      - "https://immich.cluster/auth/login"
+      - "https://immich.cluster/user-settings"
+      - "app.immich:///oauth-callback"
 immich:
-  configuration:
-    oauth:
-      enabled: true
-      # The OpenID Connect discovery URL from Authentik
-      issuerUrl: https://authentik.cluster/application/o/immich/.well-known/openid-configuration
-      # Client credentials from your Authentik Application
-      clientId: "TODOCHANGEME"
-      clientSecret: "TODOCHANGEME"
-      # Requested scopes
-      scope: "openid email profile"
-      # Whether Immich should automatically create users after successful login
-      autoRegister: true
-      # Whether Immich should automatically redirect to Authentik login
-      autoLaunch: true
-      # Optional button text for UI
-      buttonText: "Step into the Juniverse Image Galery"
-      # Whether to use the Immich mobile redirect helper endpoint
-      mobileRedirectUriOverride: false
-      # You can explicitly define allowed redirect URIs if needed
-      redirectUris:
-        - "https://immich.cluster/auth/login"
-        - "https://immich.cluster/user-settings"
-        - "app.immich:///oauth-callback"
 
 
   persistence:
