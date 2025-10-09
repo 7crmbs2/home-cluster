@@ -29,6 +29,7 @@ immich:
           - path: /
 
   configuration:
+    enabled: true
     oauth:
       enabled: true
       issuerUrl: https://authentik.cluster/application/o/immich/.well-known/openid-configuration
