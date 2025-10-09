@@ -1,28 +1,4 @@
 immich:
-  configuration:
-    oauth:
-      enabled: true
-      # The OpenID Connect discovery URL from Authentik
-      issuerUrl: https://authentik.cluster/application/o/immich/.well-known/openid-configuration
-      # Client credentials from your Authentik Application
-      clientId: "TODOCHANGEME"
-      clientSecret: "TODOCHANGEME"
-      # Requested scopes
-      scope: "openid email profile"
-      # Whether Immich should automatically create users after successful login
-      autoRegister: true
-      # Whether Immich should automatically redirect to Authentik login
-      autoLaunch: true
-      # Optional button text for UI
-      buttonText: "Step into the Juniverse Image Galery"
-      # Whether to use the Immich mobile redirect helper endpoint
-      mobileRedirectUriOverride: false
-      # You can explicitly define allowed redirect URIs if needed
-      redirectUris:
-        - "https://immich.cluster/auth/login"
-        - "https://immich.cluster/user-settings"
-        - "app.immich:///oauth-callback"
-
   persistence:
     external:
       storageClass: nfs-client
@@ -51,12 +27,24 @@ immich:
         ## Configure the paths for the host
         paths:
           - path: /
-            # pathType: Prefix
-            # service:
-            #   # -- Overrides the service name reference for this path
-            #   # The service name to reference.
-            #   # name: server
-            #   # -- Reference a service identifier from this values.yaml
-            #   identifier: server
-            #   # -- Overrides the service port number reference for this path
-            #   port: 80
+
+  configuration:
+    oauth:
+      enabled: true
+      issuerUrl: https://authentik.cluster/application/o/immich/.well-known/openid-configuration
+      clientId: "TODOCHANGEME"
+      clientSecret: "TODOCHANGEME"
+      scope: "openid email profile"
+      # Whether Immich should automatically create users after successful login
+      autoRegister: true
+      # Whether Immich should automatically redirect to Authentik login
+      autoLaunch: true
+      # Optional button text for UI
+      buttonText: "Step into the Juniverse Image Galery"
+      # Whether to use the Immich mobile redirect helper endpoint
+      mobileRedirectUriOverride: false
+      # You can explicitly define allowed redirect URIs if needed
+      redirectUris:
+        - "https://immich.cluster/auth/login"
+        - "https://immich.cluster/user-settings"
+        - "app.immich:///oauth-callback"
