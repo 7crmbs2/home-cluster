@@ -28,24 +28,25 @@ immich:
         paths:
           - path: /
 
-  configuration:
-    enabled: true
-    oauth:
+  immich:
+    configuration:
       enabled: true
-      issuerUrl: https://authentik.cluster/application/o/immich/.well-known/openid-configuration
-      clientId: "TODOCHANGEME"
-      clientSecret: "TODOCHANGEME"
-      scope: "openid email profile"
-      # Whether Immich should automatically create users after successful login
-      autoRegister: true
-      # Whether Immich should automatically redirect to Authentik login
-      autoLaunch: true
-      # Optional button text for UI
-      buttonText: "Step into the Juniverse Image Galery"
-      # Whether to use the Immich mobile redirect helper endpoint
-      mobileRedirectUriOverride: false
-      # You can explicitly define allowed redirect URIs if needed
-      redirectUris:
-        - "https://immich.cluster/auth/login"
-        - "https://immich.cluster/user-settings"
-        - "app.immich:///oauth-callback"
+      oauth:
+        enabled: true
+        issuerUrl: https://authentik.cluster/application/o/immich/.well-known/openid-configuration
+        clientId: "TODOCHANGEME"
+        clientSecret: "TODOCHANGEME"
+        scope: "openid email profile"
+        # Whether Immich should automatically create users after successful login
+        autoRegister: true
+        # Whether Immich should automatically redirect to Authentik login
+        autoLaunch: true
+        # Optional button text for UI
+        buttonText: "Step into the Juniverse Image Galery"
+        # Whether to use the Immich mobile redirect helper endpoint
+        mobileRedirectUriOverride: false
+        # You can explicitly define allowed redirect URIs if needed
+        redirectUris:
+          - "https://immich.cluster/auth/login"
+          - "https://immich.cluster/user-settings"
+          - "app.immich:///oauth-callback"
