@@ -33,10 +33,10 @@ immich:
       enabled: true
       oauth:
         enabled: true
-        issuerUrl: https://authentik.cluster/application/o/immich/.well-known/openid-configuration
-        clientId: "TODOCHANGEME"
-        clientSecret: "TODOCHANGEME"
+        issuerUrl: 'https://auth.crmbs.net/application/o/immich/'
+        clientId: "GvZSRwI2a0xxT7IaTHzH8cE0EOUsibHpQfZ8Ac7l"
         scope: "openid email profile"
+        defaultStorageQuota: 50
         # Whether Immich should automatically create users after successful login
         autoRegister: true
         # Whether Immich should automatically redirect to Authentik login
@@ -45,8 +45,11 @@ immich:
         buttonText: "Step into the Juniverse Image Galery"
         # Whether to use the Immich mobile redirect helper endpoint
         mobileRedirectUriOverride: false
+        timeout: 30000
         # You can explicitly define allowed redirect URIs if needed
-        redirectUris:
-          - "https://immich.cluster/auth/login"
-          - "https://immich.cluster/user-settings"
-          - "app.immich:///oauth-callback"
+        # redirectUris:
+        #   - "https://immich.cluster/auth/login"
+        #   - "https://immich.cluster/user-settings"
+        #   - "https://immich.crmbs.net/auth/login"
+        #   - "https://immich.cluster/user-settings"
+        #   - "app.immich:///oauth-callback"
