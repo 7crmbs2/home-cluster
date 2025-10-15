@@ -46,10 +46,3 @@ immich:
         # Whether to use the Immich mobile redirect helper endpoint
         mobileRedirectUriOverride: false
         timeout: 30000
-        # You can explicitly define allowed redirect URIs if needed
-        # redirectUris:
-        #   - "https://immich.cluster/auth/login"
-        #   - "https://immich.cluster/user-settings"
-        #   - "https://immich.crmbs.net/auth/login"
-        #   - "https://immich.cluster/user-settings"
-        #   - "app.immich:///oauth-callback"
