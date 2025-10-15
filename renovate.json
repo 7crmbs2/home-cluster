@@ -1,6 +1,38 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
-  ]
+    "config:recommended",
+
+    ":pinVersions",
+    ":automergeMinor",
+    ":rebaseStalePrs"
+
+  ],
+  "labels": ["dependencies"],
+  "automergeStrategy": "fast-forward",
+  "packageRules": [
+    {
+      "description": "Authentik chart minor releases could be breaking",
+      "automerge": false,
+      "matchUpdateTypes": [
+        "major",
+        "minor"
+      ],
+      "matchPackageNames": [
+        "authentik"
+      ]
+    },
+    {
+      "description": "Jellyfin minor versions are actually their major version releases and can include breaking changes",
+      "automerge": false,
+      "matchUpdateTypes": [
+        "major",
+        "minor"
+      ],
+      "matchPackageNames": [
+        "jellyfin/jellyfin{/,}**"
+      ]
+    }
+  ],
+  "bumpVersion": "patch"
 }
