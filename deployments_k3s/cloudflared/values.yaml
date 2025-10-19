@@ -11,7 +11,7 @@ regions:
       - subdomain: argocd
         servicename: argocd-server
         namespace: argocd
-        serviceport: 80
+        serviceport: 443
       # - subdomain: home
       #   servicename: home-assistant
       #   namespace: home-assistant
