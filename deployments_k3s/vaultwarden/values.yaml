@@ -10,8 +10,7 @@ controllers:
           tag: 1.34.3
           pullPolicy: IfNotPresent
         env:
-           # SIGNUPS_ALLOWED: false
-          SIGNUPS_ALLOWED: true # Change this before going public
+          SIGNUPS_ALLOWED: false
           INVITATIONS_ALLOWED: false
           DOMAIN: https://vaultwarden.cluster
           # SERVER_ADMIN_EMAIL
