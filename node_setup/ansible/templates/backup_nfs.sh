@@ -29,7 +29,7 @@ export REPOSITORY="ssh://${BACKUP_USER}@${BACKUP_USER}.your-storagebox.de:23/./$
 ## Output to a logfile
 ##
 
-exec > >(tee -i ${LOG})
+exec > >(tee -ia ${LOG})
 exec 2>&1
 
 echo "###### Backup started: $(date) ######"
