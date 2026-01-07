@@ -2,11 +2,11 @@
 apiVersion: v2
 description: A chart for adguard in k3s
 name: adguard
-version: 1.0.1
+version: 1.0.2
 maintainers:
   - name: julian
     email: julian@diluz.io
 dependencies:
   - name: common
-    version: 4.4.0
+    version: 4.6.0
     repository: https://bjw-s-labs.github.io/helm-charts/
