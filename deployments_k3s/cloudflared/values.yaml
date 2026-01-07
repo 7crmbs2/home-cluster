@@ -17,7 +17,7 @@ regions:
       #   namespace: home-assistant
       #   serviceport: 80
       - subdomain: immich
-        servicename: immich
+        servicename: immich-server
         namespace: immich
         serviceport: 2283
       # - subdomain: jellyfin
