@@ -1,24 +1,4 @@
 immich:
-  persistence:
-    external:
-      storageClass: nfs-client
-      size: 1Ti
-    library:
-      storageClass: nfs-client
-      size: 1Ti
-    machine-learning-cache:
-      storageClass: nfs-client
-      size: 10Gi
-
-  postgresql:
-    global:
-      postgresql:
-        auth:
-          password: TODOCHANGEME
-    primary:
-      persistence:
-        storageClass: nfs-client
-  
   ingress:
     server:
       enabled: true
@@ -28,7 +8,33 @@ immich:
         paths:
           - path: /
 
+  persistence:
+    external:
+      storageClass: nfs-client
+      size: 1Ti
+      accessMode: ReadWriteMany
+    library:
+      storageClass: nfs-client
+      size: 1Ti
+      accessMode: ReadWriteMany
+    machine-learning-cache:
+      storageClass: nfs-client
+      size: 10Gi
+      accessMode: ReadWriteMany
+
+  postgresql:
+    auth:
+      password: TODOCHANGEME
+    primary:
+      persistence:
+        storageClass: nfs-client
+        size: 100Gi
+        accessMode: ReadWriteMany
+  
   immich:
+    database:
+      storageType: hdd
+
     configuration:
       enabled: true
       oauth:
