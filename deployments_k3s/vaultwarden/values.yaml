@@ -12,7 +12,7 @@ controllers:
         env:
           SIGNUPS_ALLOWED: false
           INVITATIONS_ALLOWED: false
-          DOMAIN: https://vaultwarden.cluster
+          DOMAIN: https://vaultwarden.crmbs.net
           ADMIN_TOKEN: ""
           # SERVER_ADMIN_EMAIL
           # YUBICO_CLIENT_ID
