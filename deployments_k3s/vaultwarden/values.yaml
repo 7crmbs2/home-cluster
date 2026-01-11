@@ -13,6 +13,7 @@ controllers:
           SIGNUPS_ALLOWED: false
           INVITATIONS_ALLOWED: false
           DOMAIN: https://vaultwarden.cluster
+          ADMIN_TOKEN: ""
           # SERVER_ADMIN_EMAIL
           # YUBICO_CLIENT_ID
           # YUBICO_SECRET_KEY
