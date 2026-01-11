@@ -26,7 +26,7 @@ regions:
         serviceport: 8096
       - subdomain: status
         servicename: uptime-kuma
-        namespace: uptime-kuma
+        namespace: uptimekuma
         serviceport: 3001
       - subdomain: vaultwarden
         servicename: vaultwarden
