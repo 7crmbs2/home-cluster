@@ -1,11 +1,11 @@
 apiVersion: v2
 description: A Vaultwarden Helm chart for Kubernetes
 name: vaultwarden
-version: 0.1.5
+version: 0.1.6
 maintainers:
   - name: julian
     email: julian@diluz.io
 dependencies:
   - name: common
     repository: https://bjw-s-labs.github.io/helm-charts
-    version: 4.6.1
+    version: 4.6.2
