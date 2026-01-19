@@ -8,6 +8,11 @@ controllers:
           repository: vikunja/vikunja
           tag: 0.24.6
           pullPolicy: IfNotPresent
+        env:
+          # - name: VIKUNJA_SERVICE_PUBLICURL
+          #   value: https://vikunja.cluster
+          - name: VIKUNJA_CORS_ENABLE
+            value: "false"
         probes:
           liveness:
             enabled: true
@@ -31,11 +36,11 @@ service:
         port: 80
         protocol: TCP
         targetPort: 80
-      # https:
-      #   enabled: true
-      #   port: 6053
-      #   protocol: TCP
-      #   targetPort: 6053
+      https:
+        enabled: true
+        port: 3456
+        protocol: TCP
+        targetPort: 3456
 ingress:
   main:
     enabled: true
@@ -45,7 +50,7 @@ ingress:
           - path: /
             service:
               identifier: main
-              port: http
+              port: https
 persistence:
   files:
     storageClass: nfs-client
