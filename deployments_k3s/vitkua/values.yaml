@@ -1,0 +1,62 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/app-template-4.0.1/charts/other/app-template/values.schema.json
+controllers:
+  main:
+    containers:
+      main:
+        image:
+          repository: vikunja/vikunja
+          tag: 0.24.6
+          pullPolicy: IfNotPresent
+        probes:
+          liveness:
+            enabled: true
+            custom: true
+            port: http
+            path: /
+            type: TCP
+        # resources:
+        #   requests:
+        #     cpu: 10m
+        #     memory: 256M
+        #   limits:
+        #     memory: 512M
+service:
+  main:
+    controller: main
+    type: ClusterIP
+    externalTrafficPolicy: Local
+    ports:
+      http:
+        enabled: true
+        port: 80
+        protocol: TCP
+        targetPort: 80
+      # https:
+      #   enabled: true
+      #   port: 6053
+      #   protocol: TCP
+      #   targetPort: 6053
+# ingress:
+#   main:
+#     enabled: true
+#     hosts:
+#       - host: esphome.cluster
+#         paths:
+#           - path: /
+#             service:
+#               identifier: main
+#               port: http
+persistence:
+  files:
+    storageClass: nfs-client
+    accessMode: ReadWriteOnce
+    size: 25Gi
+    globalMounts:
+      - path: /app/vikunja/files
+  db:
+    storageClass: nfs-client
+    accessMode: ReadWriteOnce
+    size: 10Gi
+    globalMounts:
+      - path: /db
