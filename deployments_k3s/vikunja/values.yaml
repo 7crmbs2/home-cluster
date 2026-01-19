@@ -25,7 +25,6 @@ service:
   main:
     controller: main
     type: ClusterIP
-    externalTrafficPolicy: Local
     ports:
       http:
         enabled: true
@@ -37,16 +36,16 @@ service:
       #   port: 6053
       #   protocol: TCP
       #   targetPort: 6053
-# ingress:
-#   main:
-#     enabled: true
-#     hosts:
-#       - host: esphome.cluster
-#         paths:
-#           - path: /
-#             service:
-#               identifier: main
-#               port: http
+ingress:
+  main:
+    enabled: true
+    hosts:
+      - host: vikunja.cluster
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
 persistence:
   files:
     storageClass: nfs-client
