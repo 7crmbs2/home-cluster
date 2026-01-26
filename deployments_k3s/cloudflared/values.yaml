@@ -36,7 +36,7 @@ regions:
       #   servicename: obsidian
       #   namespace: obsidian
       #   serviceport: 80
-      # - subdomain: mon
-      #   servicename: monitoring-grafana
-      #   namespace: monitoring
-      #   serviceport: 80
+      - subdomain: mon
+        servicename: monitoring-grafana
+        namespace: monitoring
+        serviceport: 80
