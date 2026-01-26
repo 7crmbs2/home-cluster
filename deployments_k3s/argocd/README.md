@@ -25,3 +25,7 @@ kubectl patch service argocd-server -n argocd --patch '{ "spec": { "type": "Load
 ```bash
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
+
+# Create Token for ghcr
+
+Create a token for read on open repos and add simply it in the GUI.
