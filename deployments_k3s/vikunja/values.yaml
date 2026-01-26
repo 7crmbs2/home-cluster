@@ -1,5 +1,9 @@
 ---
 vikunja:
+  postgresql:
+    enabled: true
+    image:
+      tag: latest
   ingress:
     main:
       enabled: true
