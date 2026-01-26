@@ -15,7 +15,7 @@ vikunja:
     image:
       registry: docker.io
       repository: library/postgres
-      tag: "16-bookworm"
+      tag: "18-bookworm"
     primary:
       persistence:
         enabled: true
