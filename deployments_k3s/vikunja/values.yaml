@@ -7,6 +7,11 @@ vikunja:
         - host: vikunja.cluster
           paths:
             - path: /
+
+  persistence:
+    enabled: true
+    storageClass: "nfs-client"
+    size: 1Gi
   # configMaps:
   #   api-config:
   #     enabled: true
