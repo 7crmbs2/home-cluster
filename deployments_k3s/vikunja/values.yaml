@@ -4,13 +4,14 @@ vikunja:
     enabled: true
     image:
       tag: latest
-  ingress:
-    main:
-      enabled: true
-      hosts:
-        - host: vikunja.cluster
-          paths:
-            - path: /
+  vikunja:
+    ingress:
+      main:
+        enabled: true
+        hosts:
+          - host: vikunja.cluster
+            paths:
+              - path: /
   # configMaps:
   #   api-config:
   #     enabled: true
