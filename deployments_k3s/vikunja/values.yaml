@@ -7,20 +7,6 @@ vikunja:
         - host: vikunja.cluster
           paths:
             - path: /
-  postgresql:
-    enabled: true
-    global:
-      security:
-        allowInsecureImages: true
-    image:
-      registry: docker.io
-      repository: library/postgres
-      tag: "16-bookworm"
-    primary:
-      persistence:
-        enabled: true
-        storageClass: "nfs-client"
-        size: 5Gi
   # configMaps:
   #   api-config:
   #     enabled: true
