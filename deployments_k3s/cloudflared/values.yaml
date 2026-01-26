@@ -40,3 +40,7 @@ regions:
         servicename: monitoring-grafana
         namespace: monitoring
         serviceport: 80
+      - subdomain: vikunja
+        servicename: vikunja
+        namespace: vikunja
+        serviceport: 3456
