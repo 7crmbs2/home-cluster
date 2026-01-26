@@ -7,13 +7,6 @@ vikunja:
         - host: vikunja.cluster
           paths:
             - path: /
-  postgresql:
-    enabled: true
-    primary:
-      persistence:
-        enabled: true
-        storageClass: "nfs-client"
-        size: 5Gi
   # configMaps:
   #   api-config:
   #     enabled: true
