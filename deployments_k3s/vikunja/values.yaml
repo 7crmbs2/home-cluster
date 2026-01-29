@@ -1,42 +1,37 @@
 ---
 vikunja:
-  postgresql:
-    enabled: true
-    image:
-      tag: latest
-  vikunja:
-    persistence:
-      # This is where your Vikunja data lives,
-      # provide an existing PVC or let one be autocreated
+  persistence:
+    # This is where your Vikunja data lives,
+    # provide an existing PVC or let one be autocreated
+    data:
+      enabled: true
+      # existingClaim: # your-claim
+      accessMode: ReadWriteOnce
+      size: 2Gi
+      mountPath: /app/vikunja/files
+      # storageClass: storage-class
+    # Persistence for SQLite database
+    database:
+      enabled: true
+      # existingClaim: # your-claim
+      accessMode: ReadWriteOnce
+      size: 2Gi
+      mountPath: /db
+      # storageClass: storage-class
+  configMaps:
+    # The configuration for Vikunja's api
+    # https://vikunja.io/docs/config-options/
+    config:
+      enabled: true
       data:
-        enabled: true
-        # existingClaim: # your-claim
-        accessMode: ReadWriteOnce
-        size: 2Gi
-        mountPath: /app/vikunja/files
-        # storageClass: storage-class
-      # Persistence for SQLite database
-      database:
-        enabled: true
-        # existingClaim: # your-claim
-        accessMode: ReadWriteOnce
-        size: 2Gi
-        mountPath: /db
-        # storageClass: storage-class
-    configMaps:
-      # The configuration for Vikunja's api
-      # https://vikunja.io/docs/config-options/
-      config:
-        enabled: true
-        data:
-          config.yml: |
-            # You can add Vikunja configuration items from https://vikunja.io/docs/config-options/ to this file
-            service:
-              # Required after Vikunja 1.0.0
-              publicurl: vikunja.crmbs.net # e.g. "https://example.com"
-              enableregistration: false
-    env:
-      # To utilize a secret in the environment variables, you can do something like the following: https://github.com/bjw-s/helm-charts/blob/a081de53024d8328d1ae9ff7e4f6bc500b0f3a29/charts/library/common/values.yaml#L141-L145
-      # You can use PostgreSQL, MySQL, or SQLite. SQLite is the default for simplicity.
-      # https://vikunja.io/docs/config-options
-      VIKUNJA_DATABASE_TYPE: "sqlite"
+        config.yml: |
+          # You can add Vikunja configuration items from https://vikunja.io/docs/config-options/ to this file
+          service:
+            # Required after Vikunja 1.0.0
+            publicurl: vikunja.crmbs.net # e.g. "https://example.com"
+            enableregistration: false
+  env:
+    # To utilize a secret in the environment variables, you can do something like the following: https://github.com/bjw-s/helm-charts/blob/a081de53024d8328d1ae9ff7e4f6bc500b0f3a29/charts/library/common/values.yaml#L141-L145
+    # You can use PostgreSQL, MySQL, or SQLite. SQLite is the default for simplicity.
+    # https://vikunja.io/docs/config-options
+    VIKUNJA_DATABASE_TYPE: "sqlite"
