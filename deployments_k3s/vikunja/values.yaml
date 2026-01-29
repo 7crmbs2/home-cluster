@@ -1,5 +1,6 @@
 ---
 vikunja:
+  fullnameOverride: vikunja
   vikunja:
     persistence:
       # This is where your Vikunja data lives,
