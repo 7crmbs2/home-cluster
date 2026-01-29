@@ -1,7 +1,7 @@
 ---
 vikunja:
-  fullnameOverride: vikunja
   vikunja:
+    fullnameOverride: vikunja
     persistence:
       # This is where your Vikunja data lives,
       # provide an existing PVC or let one be autocreated
