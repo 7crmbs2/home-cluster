@@ -3,7 +3,7 @@ apiVersion: v2
 name: homeassistant
 description: tool for my home automation
 type: application
-version: 1.0.5
+version: 1.0.6
 sources:
   - http://pajikos.github.io/home-assistant-helm-chart/
 maintainers:
@@ -11,5 +11,5 @@ maintainers:
     email: julian@diluz.io
 dependencies:
   - name: home-assistant
-    version: 0.3.41
+    version: 0.3.42
     repository: http://pajikos.github.io/home-assistant-helm-chart/
