@@ -919,7 +919,7 @@ kube-prometheus-stack:
       image:
         registry: quay.io
         repository: prometheus/alertmanager
-        tag: v0.31.0
+        tag: v0.31.1
         sha: ""
 
       ## If true then the user will be responsible to provide a secret with alertmanager configuration
