@@ -2,11 +2,11 @@
 apiVersion: v2
 description: A chart to power Immich running on kubernetes
 name: immich
-version: 1.1.15
+version: 1.1.16
 maintainers:
   - name: julian
     email: julian@diluz.io
 dependencies:
   - name: immich
     repository: oci://ghcr.io/maybeanerd/immich-charts
-    version: 0.12.4
+    version: 0.12.5
