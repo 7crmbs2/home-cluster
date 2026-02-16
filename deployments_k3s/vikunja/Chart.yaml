@@ -3,7 +3,7 @@ apiVersion: v2
 description: A chart for vikunja in k3s
 type: application
 name: vikunja
-version: 1.0.2
+version: 1.0.3
 sources:
   - https://artifacthub.io/packages/helm/vikunja/vikunja
 maintainers:
@@ -11,5 +11,5 @@ maintainers:
     email: julian@diluz.io
 dependencies:
   - name: vikunja
-    version: 2.0.0
+    version: v2.0.2
     repository: oci://ghcr.io/go-vikunja/helm-chart
