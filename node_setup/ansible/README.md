@@ -99,11 +99,11 @@ ansible-playbook ./execution/initial_network.yml -i inventory --check
 
 ansible-playbook ./execution/initial_setup.yml -i inventory --check
 
-ansible-playbook ./execution/k3s_install.yml -i inventory --extra-vars "@secrets.enc"
+ansible-playbook ./execution/k3s_install.yml -i inventory --extra-vars "@secrets.enc" --ask-vault-pass --check
 
-ansible-playbook ./execution/k3s_network.yml -i inventory --extra-vars "@secrets.enc"
+ansible-playbook ./execution/k3s_network.yml -i inventory --extra-vars "@secrets.enc" --ask-vault-pass --check
 
-ansible-playbook ./execution/k3s_upgrade.yml -i inventory --extra-vars "@secrets.enc"
+ansible-playbook ./execution/k3s_upgrade.yml -i inventory --extra-vars "@secrets.enc" --ask-vault-pass --check
 
 ansible-playbook ./execution/update_nodes.yml -i inventory --check
 ```
