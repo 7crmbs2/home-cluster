@@ -52,3 +52,6 @@ immich:
         # Whether to use the Immich mobile redirect helper endpoint
         mobileRedirectUriOverride: false
         timeout: 30000
+      ffmpeg:
+        transcode: disabled
+        
