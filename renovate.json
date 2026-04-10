@@ -6,32 +6,22 @@
     ":pinVersions",
     ":automergeMinor",
     ":rebaseStalePrs"
-
   ],
   "labels": ["dependencies"],
+  "minimumReleaseAge": "7 days",
   "automergeStrategy": "fast-forward",
   "packageRules": [
     {
       "description": "Authentik chart minor releases could be breaking",
       "automerge": false,
-      "matchUpdateTypes": [
-        "major",
-        "minor"
-      ],
-      "matchPackageNames": [
-        "authentik"
-      ]
+      "matchUpdateTypes": ["major", "minor"],
+      "matchPackageNames": ["authentik"]
     },
     {
       "description": "Jellyfin minor versions are actually their major version releases and can include breaking changes",
       "automerge": false,
-      "matchUpdateTypes": [
-        "major",
-        "minor"
-      ],
-      "matchPackageNames": [
-        "jellyfin/jellyfin{/,}**"
-      ]
+      "matchUpdateTypes": ["major", "minor"],
+      "matchPackageNames": ["jellyfin/jellyfin{/,}**"]
     }
   ],
   "bumpVersion": "patch"
