@@ -52,7 +52,7 @@ jellyfin:
     # runAsUser: 1000
 
   # -- Define a custom runtimeClassName for the pod.
-  runtimeClassName: ''
+  runtimeClassName: ""
 
   # -- Define a priorityClassName for the pod.
   priorityClassName: ""
@@ -90,7 +90,7 @@ jellyfin:
     # -- External traffic policy (Cluster or Local).
     # externalTrafficPolicy: Cluster
     # -- NodePort for the service (if applicable).
-    # nodePort: 
+    # nodePort:
 
   # -- Ingress configuration. See: https://kubernetes.io/docs/concepts/services-networking/ingress/
   ingress:
@@ -121,8 +121,8 @@ jellyfin:
   # -- Configure liveness probe for Jellyfin.
   livenessProbe:
     initialDelaySeconds: 10
-    tcpSocket:
-      port: http
+    # tcpSocket:
+    #   port: http
     # successThreshold: 1
     # failureThreshold: 3
     # timeoutSeconds: 1
@@ -131,8 +131,8 @@ jellyfin:
   # -- Configure readiness probe for Jellyfin.
   readinessProbe:
     initialDelaySeconds: 10
-    tcpSocket:
-      port: http
+    # tcpSocket:
+    #   port: http
     # successThreshold: 1
     # failureThreshold: 3
     # timeoutSeconds: 1
@@ -179,7 +179,7 @@ jellyfin:
       # -- Custom annotations to be added to the PVC
       annotations: {}
       # -- If undefined (the default) or set to null, no storageClassName spec is set, choosing the default provisioner.
-      storageClass: 'nfs-client'
+      storageClass: "nfs-client"
       ## -- Use an existing PVC for this mount
       # existingClaim: ''
     media:
@@ -190,7 +190,7 @@ jellyfin:
       # -- Custom annotations to be added to the PVC
       annotations: {}
       # -- If undefined (the default) or set to null, no storageClassName spec is set, choosing the default provisioner.
-      storageClass: 'nfs-client'
+      storageClass: "nfs-client"
       ## -- Use an existing PVC for this mount
       # existingClaim: ''
 
@@ -200,7 +200,7 @@ jellyfin:
     enabled: false
     command:
       - bash
-      - '-c'
+      - "-c"
       - >-
         sed 's,<EnableMetrics>false</EnableMetrics>,<EnableMetrics>true</EnableMetrics>,' -i /config/config/system.xml &&
         /jellyfin/jellyfin
@@ -209,7 +209,7 @@ jellyfin:
       # -- Enable or disable the creation of a ServiceMonitor resource
       enabled: false
       # -- Namespace where the ServiceMonitor resource should be created. Defaults to Release.Namespace
-      namespace: ''
+      namespace: ""
       # -- Labels to add to the ServiceMonitor resource
       labels: {}
       # -- Interval at which metrics should be scraped
@@ -233,6 +233,6 @@ jellyfin:
 
   # -- additional init containers to run inside the pod.
   extraInitContainers: []
-    
+
   # -- additional sidecar containers to run inside the pod.
   extraContainers: []
