@@ -6,7 +6,7 @@ controllers:
       main:
         image:
           repository: esphome/esphome
-          tag: 2026.3
+          tag: 2026.4
           pullPolicy: IfNotPresent
         env:
           TZ: CET
