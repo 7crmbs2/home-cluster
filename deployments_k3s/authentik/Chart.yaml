@@ -3,7 +3,7 @@ apiVersion: v2
 name: authentik
 description: Auth service powered by authentik
 type: application
-version: 1.0.7
+version: 1.0.8
 sources:
   - https://github.com/goauthentik/helm
 maintainers:
@@ -11,5 +11,5 @@ maintainers:
     email: julian@diluz.io
 dependencies:
   - name: authentik
-    version: 2026.2.2
+    version: 2026.2.3
     repository: https://charts.goauthentik.io
