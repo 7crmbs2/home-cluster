@@ -116,3 +116,12 @@ We need metallb and argocd for starters.
 Follow the install:
 
 TODO add export KUBECONFIG=/etc/rancher/k3s/k3s.yaml this to the node config! in bashrc maybe or i think theres a module even for setting env vars but idk if thats the ansible kontext
+
+## Noteable
+
+To configure kernel parameters on our OS we need to do this here: `/boot/firmware/ubuntuEnv.txt`
+
+E.g.:
+```bash
+systemd.unified_cgroup_hierarchy=1
+```
