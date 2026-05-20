@@ -1,0 +1,14 @@
+---
+apiVersion: v2
+description: A chart to power longhorn
+name: longhorn
+version: 0.1.0
+home: https://longhorn.io/
+icon: https://longhorn.io/img/logos/longhorn-horizontal-color.png
+maintainers:
+  - name: julian
+    email: julian@diluz.io
+dependencies:
+  - name: longhorn
+    repository: https://charts.longhorn.io/
+    version: 1.11.2

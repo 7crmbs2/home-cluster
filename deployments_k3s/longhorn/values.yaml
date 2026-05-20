@@ -1,0 +1,25 @@
+longhorn:
+  preUpgradeChecker:
+    jobEnabled: false
+  defaultSettings:
+    defaultDataPath: /mnt/raidstorage/longhorn
+    defaultReplicaCount: '1'
+    createDefaultDiskLabeledNodes: true
+  persistence:
+    defaultClassReplicaCount: 1
+  systemManagedComponentsNodeSelector:
+    node.longhorn.io/create-default-disk: 'config'
+  createDefaultDiskLabeledNodes: true
+  longhornUI:
+    replicas: 1
+  # ingress:
+  #   enabled: false
+  #   host: longhorn.crmbs.net
+  #   annotations:
+  #     traefik.ingress.kubernetes.io/router.middlewares: traefik-authentik-admin@kubernetescrd
+
+# backups:
+#   s3:
+#     endpoint: 'https://fsn1.your-objectstorage.com'
+#     accessKey: 'TODO_HETZNER_KEY'
+#     secretKey: 'TODO_HETZNER_SECRET'
