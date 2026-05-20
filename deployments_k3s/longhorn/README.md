@@ -4,8 +4,7 @@
 
 ### allow scheduling on cube03
 kubectl label nodes cube03 node.longhorn.io/create-default-disk=config
-kubectl annotate nodes cube03 \
-  'node.longhorn.io/default-disks-config=[{"path":"/mnt/raidstorage/longhorn","allowScheduling":true}]'
+kubectl annotate nodes cube03 'node.longhorn.io/default-disks-config=[{"path":"/mnt/raidstorage/longhorn","allowScheduling":true}]'
 
 ### list nodes that have longhorn disks
 
