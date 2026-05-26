@@ -18,6 +18,13 @@ vikunja:
       size: 2Gi
       mountPath: /db
       # storageClass: storage-class
+  ingress:
+    main:
+      enabled: true
+      hosts:
+        - host: vikunja.crmbs.net
+          paths:
+            - path: /
   vikunja:
     configMaps:
       # The configuration for Vikunja's api
