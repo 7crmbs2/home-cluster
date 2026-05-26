@@ -1323,7 +1323,7 @@ kube-prometheus-stack:
       ## Must be provided if Ingress is enable.
       ##
       hosts:
-        - grafana.cluster
+        - grafana.crmbs.net
       # hosts: []
 
       ## Path for grafana ingress
