@@ -47,7 +47,7 @@ authentik:
   server:
     ingress:
       # -- enable an ingress resource for the authentik server
-      enabled: true
+      enabled: false
       # -- additional ingress annotations
       annotations:
         kubernetes.io/ingress.class: traefik
@@ -58,7 +58,7 @@ authentik:
       # -- List of ingress hosts
       hosts:
         # - authentik.domain.tld
-        - authentik.cluster
+        - authentik.crmbs.net
 
       # -- List of ingress paths
       paths:

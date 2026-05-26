@@ -94,7 +94,7 @@ jellyfin:
 
   # -- Ingress configuration. See: https://kubernetes.io/docs/concepts/services-networking/ingress/
   ingress:
-    enabled: true
+    enabled: false
     className: "traefik"
     annotations:
       kubernetes.io/ingress.class: traefik

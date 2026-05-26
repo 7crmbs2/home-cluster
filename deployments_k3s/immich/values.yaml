@@ -1,7 +1,7 @@
 immich:
   ingress:
     server:
-      enabled: true
+      enabled: false
       hosts:
       - host: immich.cluster
         ## Configure the paths for the host

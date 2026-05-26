@@ -70,7 +70,7 @@ service:
         targetPort: 853
 ingress:
   main:
-    enabled: true
+    enabled: false
     annotations:
       gethomepage.dev/enabled: "true"
       gethomepage.dev/description: "DNS Ad-Blocking"

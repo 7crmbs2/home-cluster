@@ -68,7 +68,7 @@ service:
     
 ingress:
   main:
-    enabled: true
+    enabled: false
     hosts:
       - host: vaultwarden.cluster
         paths:
