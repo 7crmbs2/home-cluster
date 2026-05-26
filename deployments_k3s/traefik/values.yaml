@@ -64,8 +64,8 @@ traefik:
       acme:
         email: julian@diluz.io
         storage: /ssl-certs/acme-production.json
-        # caServer: https://acme-v02.api.letsencrypt.org/directory
-        caServer: https://acme-staging-v02.api.letsencrypt.org/directory
+        caServer: https://acme-v02.api.letsencrypt.org/directory
+        # caServer: https://acme-staging-v02.api.letsencrypt.org/directory
         httpChallenge:
           entryPoint: web
   # Persist certificates
