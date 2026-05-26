@@ -1,0 +1,90 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frp
+spec:
+  selector:
+    matchLabels:
+      app: frp
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: frp
+      annotations:
+        checksum/config: {{ .Files.Get "frpc.toml" | sha256sum | quote }}
+    spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              preference:
+                matchExpressions:
+                  - key: kubernetes.io/role
+                    operator: In
+                    values:
+                      - worker
+      containers:
+      - name: frp
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        args:
+        - -c
+        - /etc/frpc.toml
+        env:
+        - name: FRP_AUTH_TOKEN
+          value: "{{ .Values.authToken }}"
+        - name: FRP_SERVER_ADDR
+          value: "{{ .Values.serverAddr }}"
+        - name: FRP_SERVER_PORT
+          value: "{{ .Values.serverPort }}"
+        - name: REVERSE_PROXY_IP
+          value: "{{ .Values.reverseProxyIp }}"
+        # Wait for initial startup. It will not have connected, since the old pod is still connected.
+        startupProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - "frpc status -c /etc/frpc.toml"
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          # Allow up to 5 minutes to start up
+          failureThreshold: 30
+        # Maintain connection, kill and restart if it goes down.
+        livenessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - "frpc status -c /etc/frpc.toml | grep -q 'running'"
+          periodSeconds: 15
+          failureThreshold: 3
+        volumeMounts:
+        - name: config
+          mountPath: /etc/frpc.toml
+          subPath: frpc.toml
+          readOnly: true
+
+      volumes:
+      - name: config
+        configMap:
+          name: frp
+          items:
+          - key: frpc.toml
+            path: frpc.toml
+---
+# This ConfigMap is just a way to define the frp frpc.toml file in k8s.
+# It's useful to define it in k8s, rather than as a stand-alone file, because
+# this lets you use various k8s templating solutions (e.g. Helm charts) to
+# parameterize your config, instead of just using string literals.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frp
+data:
+  frpc.toml: |
+{{ .Files.Get "frpc.toml" | indent 4 }}
+ 
