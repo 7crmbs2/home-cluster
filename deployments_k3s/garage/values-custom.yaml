@@ -57,16 +57,16 @@ ingress:
           paths:
             - path: /
               pathType: Prefix
-    web:
-      enabled: true
-      annotations: {}
-      labels: {}
-      hosts:
-      # --  wildcard website access with bucket name prefix
-       - host: "*.garage.crmbs.net"
-         paths:
-           - path: /
-             pathType: Prefix
+    # web:
+    #   enabled: true
+    #   annotations: {}
+    #   labels: {}
+    #   hosts:
+    #   # --  wildcard website access with bucket name prefix
+    #    - host: "*.garage.crmbs.net"
+    #      paths:
+    #        - path: /
+    #          pathType: Prefix
 
 # -- Specifies a livenessProbe
 # livenessProbe:
