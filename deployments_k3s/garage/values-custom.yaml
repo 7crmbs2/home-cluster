@@ -69,19 +69,19 @@ ingress:
              pathType: Prefix
 
 # -- Specifies a livenessProbe
-livenessProbe:
-  httpGet:
-   path: /health
-   port: 3903 # or the port from garage.admin.apiBindAddr
-  initialDelaySeconds: 5
-  periodSeconds: 30
-# -- Specifies a readinessProbe
-readinessProbe:
-  httpGet:
-   path: /health
-   port: 3903 # or the port from garage.admin.apiBindAddr
-  initialDelaySeconds: 5
-  periodSeconds: 30
+# livenessProbe:
+#   httpGet:
+#    path: /health
+#    port: 3903 # or the port from garage.admin.apiBindAddr
+#   initialDelaySeconds: 5
+#   periodSeconds: 30
+# # -- Specifies a readinessProbe
+# readinessProbe:
+#   httpGet:
+#    path: /health
+#    port: 3903 # or the port from garage.admin.apiBindAddr
+#   initialDelaySeconds: 5
+#   periodSeconds: 30
 
 monitoring:
   metrics:
