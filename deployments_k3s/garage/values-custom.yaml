@@ -49,8 +49,14 @@ ingress:
       hosts:
         # -- garage S3 API endpoint, to be used with awscli for example
         - host: "s3.crmbs.net"
+          paths:
+            - path: /
+              pathType: Prefix
         # -- garage S3 API endpoint, DNS style bucket access
         - host: "*.s3.crmbs.net"
+          paths:
+            - path: /
+              pathType: Prefix
     web:
       enabled: true
       annotations: {}
@@ -58,6 +64,9 @@ ingress:
       hosts:
       # --  wildcard website access with bucket name prefix
        - host: "*.garage.crmbs.net"
+         paths:
+           - path: /
+             pathType: Prefix
 
 # -- Specifies a livenessProbe
 livenessProbe:
