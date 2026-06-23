@@ -1,0 +1,84 @@
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+garage:
+  # -- Default to 3 replicas, see the replication_factor section at
+  replicationFactor: "1" # I only have one storage node :sadcat:
+
+  # -- If this value is set, Garage will automatically take a snapshot of the metadata DB file at a regular interval and save it in the metadata directory.
+  # https://garagehq.deuxfleurs.fr/documentation/reference-manual/configuration/#metadata_auto_snapshot_interval
+  metadataAutoSnapshotInterval: "1 day" # [value] [unit] pairs, such as "15 days 20 seconds 100 milliseconds"
+
+  s3:
+    api:
+      region: "garage"
+      rootDomain: ".s3.crmbs.net"
+    web:
+      rootDomain: ".garage.crmbs.net"
+  # TODO Look into this where this is and stuff
+  admin:
+    apiBindAddr: "[::]:3903"
+
+# Data persistence
+persistence:
+  enabled: true
+  meta:
+    storageClass: "longhorn"
+    size: 500Mi
+  data:
+    storageClass: "longhorn"
+    size: 4Ti
+
+# Deployment configuration
+deployment:
+  # -- Number of StatefulSet replicas/garage nodes to start
+  replicaCount: 2
+
+image:
+  # -- use arm image for the clusterboard
+  repository: dxflrs/arm64_garage
+  tag: "v2.3.0"
+
+ingress:
+  s3:
+    api:
+      enabled: true
+      # -- Rely _either_ on the className or the annotation below but not both!
+      annotations: {}
+      labels: {}
+      hosts:
+        # -- garage S3 API endpoint, to be used with awscli for example
+        - host: "s3.crmbs.net"
+        # -- garage S3 API endpoint, DNS style bucket access
+        - host: "*.s3.crmbs.net"
+    web:
+      enabled: true
+      annotations: {}
+      labels: {}
+      hosts:
+      # --  wildcard website access with bucket name prefix
+       - host: "*.garage.crmbs.net"
+
+# -- Specifies a livenessProbe
+livenessProbe:
+  httpGet:
+   path: /health
+   port: 3903 # or the port from garage.admin.apiBindAddr
+  initialDelaySeconds: 5
+  periodSeconds: 30
+# -- Specifies a readinessProbe
+readinessProbe:
+  httpGet:
+   path: /health
+   port: 3903 # or the port from garage.admin.apiBindAddr
+  initialDelaySeconds: 5
+  periodSeconds: 30
+
+monitoring:
+  metrics:
+    # -- If true, a service for monitoring is created with a prometheus.io/scrape annotation
+    enabled: true
+    serviceMonitor:
+      # -- If true, a ServiceMonitor CRD is created for a prometheus operator
+      # https://github.com/coreos/prometheus-operator
+      enabled: true
