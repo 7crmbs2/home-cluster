@@ -32,7 +32,7 @@ persistence:
 # Deployment configuration
 deployment:
   # -- Number of StatefulSet replicas/garage nodes to start
-  replicaCount: 2
+  replicaCount: 1
 
 image:
   # -- use arm image for the clusterboard
