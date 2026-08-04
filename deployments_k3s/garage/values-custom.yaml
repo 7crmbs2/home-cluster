@@ -53,10 +53,15 @@ ingress:
             - path: /
               pathType: Prefix
         # -- garage S3 API endpoint, DNS style bucket access
-        - host: "*.s3.crmbs.net"
+        - host: "basti-backup.s3.crmbs.net"
           paths:
             - path: /
               pathType: Prefix
+        # This section is needed for each bucket for the future:
+        # - host: "basti-backup.s3.crmbs.net"
+        #   paths:
+        #     - path: /
+        #       pathType: Prefix
     # web:
     #   enabled: true
     #   annotations: {}
