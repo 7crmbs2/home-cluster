@@ -13,11 +13,11 @@ garage:
     api:
       region: "garage"
       rootDomain: ".s3.crmbs.net"
-    # web:
-    #   rootDomain: ".garage.crmbs.net"
-  # We dont need this since we can use the cli via kubectl
-  # admin:
-  #   apiBindAddr: "[::]:3903"
+    web:
+      rootDomain: ".garage.crmbs.net"
+  # TODO Look into this where this is and stuff
+  admin:
+    apiBindAddr: "[::]:3903"
 
 # Data persistence
 persistence:
@@ -62,8 +62,6 @@ ingress:
         #   paths:
         #     - path: /
         #       pathType: Prefix
-    web:
-      enabled: false
     # web:
     #   enabled: true
     #   annotations: {}
