@@ -1,0 +1,125 @@
+---
+# Values passed through to the "seaweedfs" dependency chart.
+# Full upstream reference (every knob available):
+# https://github.com/seaweedfs/seaweedfs/blob/master/k8s/charts/seaweedfs/values.yaml
+seaweedfs:
+
+  global:
+    imagePullPolicy: IfNotPresent
+    # registry / repository overrides live here if you mirror images internally
+    monitoring:
+      enabled: false
+
+  # --- Master: cluster coordination / topology ---------------------------
+  master:
+    enabled: true
+    replicas: 1
+    volumeSizeLimitMB: 30000
+    resources:
+      requests:
+        cpu: 200m
+        memory: 256Mi
+      limits:
+        memory: 512Mi
+    data:
+      type: "persistentVolumeClaim"
+      size: "2Gi"
+    logs:
+      type: "persistentVolumeClaim"
+      size: "1Gi"
+
+  # --- Volume: actual blob storage ----------------------------------------
+  volume:
+    enabled: true
+    replicas: 1
+    resources:
+      requests:
+        cpu: 250m
+        memory: 512Mi
+      limits:
+        memory: 1Gi
+    data:
+      type: "persistentVolumeClaim"
+      size: "8Ti"                    # <- real object storage capacity
+    dataDirs:
+      - name: data
+        type: "persistentVolumeClaim"
+        maxVolumes: 0                  # 0 = unlimited, bounded by disk size
+
+  # --- Filer: namespace / metadata layer + embedded S3 gateway -----------
+  filer:
+    enabled: true
+    replicas: 1
+    resources:
+      requests:
+        cpu: 200m
+        memory: 256Mi
+      limits:
+        memory: 512Mi
+    data:
+      type: "persistentVolumeClaim"
+      size: "10Gi"
+    # leveldb2 (built in, no external DB) is fine for a single filer replica.
+    # Only move to MySQL/Postgres if you scale filer replicas > 1.
+
+    s3:
+      enabled: true
+      enableAuth: true
+      # Secret is bundled in templates/seaweedfs-s3-secret.yaml with CHANGEME
+      # placeholders — override the keys via ArgoCD before going to production.
+      existingConfigSecret: seaweedfs-s3-secret
+      port: 8333
+      # Leave blank unless you also set up wildcard DNS + wildcard TLS for
+      # virtual-hosted-style buckets (bucket.s3.example.com). Path-style
+      # (s3.example.com/bucket) works fine without this.
+      domainName: ""
+
+      ingress:
+        enabled: true
+        className: "traefik"
+        host: "s3.crmbs.net"          # <- your public S3 hostname
+        path: "/"
+        pathType: "Prefix"
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        tls:
+          - secretName: seaweedfs-s3-tls
+            hosts:
+              - s3.crmbs.net
+
+      service:
+        type: ClusterIP
+
+    # Filer's own HTTP API / WebDAV UI (port 8888) — deliberately NOT
+    # exposed via ingress. Keep it cluster-internal; port-forward if you
+    # need to browse it.
+    ingress:
+      enabled: false
+
+  # Standalone S3 gateway deployment — leave disabled, we use the S3
+  # gateway embedded in the filer above instead (one less moving part).
+  s3:
+    enabled: false
+
+  # Web admin UI — enabled, ClusterIP only (no ingress).
+  # Access via: kubectl -n seaweedfs port-forward svc/seaweedfs-admin 23646:23646
+  # Then open: http://localhost:23646
+  admin:
+    enabled: true
+    port: 23646
+    grpcPort: 33646
+    secret:
+      adminUser: "admin"
+      adminPassword: "CHANGEME_ADMIN_PASSWORD"
+    data:
+      type: "persistentVolumeClaim"
+      size: "1Gi"
+      storageClass: "local-path"       # <- set to your StorageClass
+    ingress:
+      enabled: false                   # deliberately off — port-forward only
+
+  # Maintenance agents (vacuum/balance/erasure-coding) — not needed for a
+  # small single-node deployment, enable later if you grow the cluster.
+  worker:
+    enabled: false
