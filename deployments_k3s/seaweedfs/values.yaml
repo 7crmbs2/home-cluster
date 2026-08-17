@@ -44,7 +44,7 @@ seaweedfs:
     dataDirs:
       - name: data
         type: "persistentVolumeClaim"
-        size: "1000Ti"                    # <- real object storage capacity
+        size: "5000Ti"                    # <- real object storage capacity
         maxVolumes: 0                  # 0 = unlimited, bounded by disk size
 
   # --- Filer: namespace / metadata layer + embedded S3 gateway -----------
