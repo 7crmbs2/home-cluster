@@ -40,7 +40,7 @@ seaweedfs:
         memory: 1Gi
     data:
       type: "persistentVolumeClaim"
-      size: "1000Gi"                    # <- real object storage capacity
+      size: "5000Gi"                    # <- real object storage capacity
     dataDirs:
       - name: data
         type: "persistentVolumeClaim"
