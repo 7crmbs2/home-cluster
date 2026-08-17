@@ -115,7 +115,6 @@ seaweedfs:
     data:
       type: "persistentVolumeClaim"
       size: "1Gi"
-      storageClass: "local-path"       # <- set to your StorageClass
     ingress:
       enabled: false                   # deliberately off — port-forward only
 
