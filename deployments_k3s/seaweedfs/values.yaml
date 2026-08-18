@@ -32,6 +32,9 @@ seaweedfs:
   volume:
     enabled: true
     replicas: 1
+    # Pin to the node that holds the Longhorn replica on /mnt/raidstorage
+    nodeSelector:
+      kubernetes.io/hostname: cube03
     resources:
       requests:
         cpu: 250m
@@ -75,20 +78,6 @@ seaweedfs:
       # (s3.example.com/bucket) works fine without this.
       domainName: ""
 
-      ingress:
-        enabled: true
-        className: "traefik"
-        host: "s3.crmbs.net"          # <- your public S3 hostname
-        path: "/"
-        pathType: "Prefix"
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-prod
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        tls:
-          - secretName: seaweedfs-s3-tls
-            hosts:
-              - s3.crmbs.net
-
       service:
         type: ClusterIP
 
@@ -98,10 +87,31 @@ seaweedfs:
     ingress:
       enabled: false
 
-  # Standalone S3 gateway deployment — leave disabled, we use the S3
-  # gateway embedded in the filer above instead (one less moving part).
+  # Standalone S3 gateway — enabled to attach an ingress via the upstream
+  # chart's ingress schema (host/className/annotations/tls at this level).
   s3:
-    enabled: false
+    enabled: true
+    replicas: 1
+    port: 8333
+    enableAuth: true
+    existingConfigSecret: seaweedfs-s3-secret
+
+    ingress:
+      enabled: true
+      className: "traefik"
+      host: "s3.crmbs.net"
+      path: "/"
+      pathType: "Prefix"
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      tls:
+        - secretName: seaweedfs-s3-tls
+          hosts:
+            - s3.crmbs.net
+
+    service:
+      type: ClusterIP
 
   # Web admin UI — enabled, ClusterIP only (no ingress).
   # Access via: kubectl -n seaweedfs port-forward svc/seaweedfs-admin 23646:23646
