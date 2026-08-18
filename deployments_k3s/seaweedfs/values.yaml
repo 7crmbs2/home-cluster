@@ -33,7 +33,7 @@ seaweedfs:
     enabled: true
     replicas: 1
     # Pin to the node that holds the Longhorn replica on /mnt/raidstorage
-    nodeSelector:
+    nodeSelector: |
       kubernetes.io/hostname: cube03
     resources:
       requests:
