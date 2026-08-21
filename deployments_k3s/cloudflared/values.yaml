@@ -1,6 +1,6 @@
 image:
   repository: cloudflare/cloudflared
-  tag: 2026.8.1
+  tag: 2026.8.2
 regions:
   - basePath: crmbs.net
     services:
