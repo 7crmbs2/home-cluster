@@ -1,0 +1,23 @@
+---
+apiVersion: v2
+name: seaweedfs
+description: SeaweedFS distributed object store (S3-compatible)
+type: application
+home: https://github.com/seaweedfs/seaweedfs
+icon: https://raw.githubusercontent.com/seaweedfs/seaweedfs/master/note/gopher.png
+keywords:
+  - seaweedfs
+  - s3
+  - object-storage
+  - storage
+version: 1.0.0
+sources:
+  - https://github.com/seaweedfs/seaweedfs
+  - https://seaweedfs.github.io/seaweedfs/helm
+maintainers:
+  - name: julian
+    email: julian@diluz.io
+dependencies:
+  - name: seaweedfs
+    version: 4.41.0
+    repository: https://seaweedfs.github.io/seaweedfs/helm
