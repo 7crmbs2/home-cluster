@@ -2,11 +2,11 @@
 apiVersion: v2
 description: A chart to run traefik ingress
 name: traefik
-version: 0.1.4
+version: 0.1.5
 maintainers:
   - name: julian
     email: julian@diluz.io
 dependencies:
   - name: traefik
     repository: https://traefik.github.io/charts
-    version: 41.7.1
+    version: 42.0.0
