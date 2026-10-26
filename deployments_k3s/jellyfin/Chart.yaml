@@ -9,7 +9,7 @@ keywords:
   - jellyfin
   - media
   - self-hosted
-version: 1.0.2
+version: 1.0.3
 sources:
   - https://jellyfin.github.io/jellyfin-helm
 maintainers:
@@ -17,5 +17,5 @@ maintainers:
     email: julian@diluz.io
 dependencies:
   - name: jellyfin
-    version: 3.2.0
+    version: 3.4.0
     repository: https://jellyfin.github.io/jellyfin-helm
